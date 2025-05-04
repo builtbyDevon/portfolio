@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion, useInView } from "framer-motion";
 import { ReactNode, useRef } from "react";
@@ -15,11 +15,12 @@ export const FadeInView = ({ children, delay = 0 }: FadeInViewProps) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 15 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>
   );
-}; 2
+};
+2;

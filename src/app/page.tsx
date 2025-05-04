@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FadeInView } from "@/components/FadeInView";
 import { GradientText } from "@/components/GradientText";
 import Sparkles from "@/components/Sparkles";
+import { TerminalAnimation } from "@/components/TerminalAnimation";
 
 export default function Home() {
   return (
@@ -31,12 +32,14 @@ export default function Home() {
         <h1 className="mx-auto mb-2 block text-center text-3xl font-semibold leading-normal md:text-5xl md:leading-normal">
           <GradientText>Hey! You're looking for Devon's</GradientText>{" "}
           <span className="text-[var(--highlight-green)]">Portfolio </span>
-          <GradientText>right?</GradientText>
+          <GradientText highlight="#b5b5b5">right?</GradientText>
         </h1>
       </FadeInView>
       <FadeInView delay={0.4}>
         <h3 className="text-center text-xl font-semibold md:text-3xl">
-          <GradientText>Awesome — we just need to </GradientText>
+          <GradientText highlight="#d4d4d4">
+            Awesome — we just need to{" "}
+          </GradientText>
           <span className="relative mr-2 text-[var(--highlight-green)]">
             simulate
             <div
@@ -62,6 +65,20 @@ export default function Home() {
           </span>{" "}
           <GradientText>first...</GradientText>
         </h3>
+      </FadeInView>
+      <FadeInView delay={0.6}>
+        <div className="relative mx-auto max-w-2xl">
+          <TerminalAnimation />
+          <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-full bg-[var(--highlight-blue)] opacity-20 blur-[150px]" />
+          <Image
+            src="/guy-coding.png"
+            alt="Icon"
+            width={155}
+            height={139}
+            quality={100}
+            className="absolute -bottom-4 -right-[50.5px]"
+          />
+        </div>
       </FadeInView>
     </div>
   );
