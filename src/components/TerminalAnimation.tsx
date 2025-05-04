@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GradientText } from "./GradientText";
+import { useRouter } from "next/navigation";
 
 const COMMAND_PREFIX = "npm install ";
 const PACKAGE_NAME = "devon-welch-portfolio";
@@ -78,6 +79,7 @@ export const TerminalAnimation = () => {
   const [typedCommand, setTypedCommand] = useState("");
   const [lines, setLines] = useState<string[]>([]);
   const [isComplete, setIsComplete] = useState(false);
+  const router = useRouter();
 
   // Effect for typing the command (SIMPLIFIED)
   useEffect(() => {
@@ -134,6 +136,17 @@ export const TerminalAnimation = () => {
       }
     };
   }, [lines, typedCommand, isComplete]); // Dependencies are correct
+
+  // Effect for redirecting to portfolio page after completion
+  useEffect(() => {
+    if (isComplete && lines.includes(SUCCESS_MESSAGE)) {
+      const redirectTimer = setTimeout(() => {
+        router.push("/portfolio");
+      }, 500); // Wait 2 seconds before redirecting
+
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [isComplete, lines, router]);
 
   return (
     // Use a dark background, set default text to white

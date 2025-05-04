@@ -38,6 +38,19 @@
   }
 }
 
+@theme {
+  --animate-grow: grow 4s ease-in-out infinite;
+  @keyframes grow {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+}
+
 body {
   background: black;
   color: hsl(var(--foreground));

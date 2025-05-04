@@ -4,10 +4,11 @@ import { GradientText } from "@/components/GradientText";
 import Sparkles from "@/components/Sparkles";
 import { TerminalAnimation } from "@/components/TerminalAnimation";
 import { Rive } from "@/components/Rive";
+import BlurDecoration from "@/components/BlurDecoration";
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <FadeInView>
         <div className="flex w-full items-center justify-center gap-4 px-4 py-12">
           {/* <Image
@@ -73,7 +74,8 @@ export default function Home() {
       <FadeInView delay={0.6}>
         <div className="relative mx-auto max-w-2xl">
           <TerminalAnimation />
-          <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-full bg-[var(--highlight-blue)] opacity-20 blur-[150px]" />
+          {/* <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-full bg-[var(--highlight-blue)] opacity-20 blur-[150px]" /> */}
+          <BlurDecoration />
           <Image
             src="/guy-coding.png"
             alt="Icon"
@@ -84,6 +86,6 @@ export default function Home() {
           />
         </div>
       </FadeInView>
-    </div>
+    </main>
   );
 }
