@@ -3,13 +3,14 @@ import { FadeInView } from "@/components/FadeInView";
 import { GradientText } from "@/components/GradientText";
 import Sparkles from "@/components/Sparkles";
 import { TerminalAnimation } from "@/components/TerminalAnimation";
+import { Rive } from "@/components/Rive";
 
 export default function Home() {
   return (
     <div>
       <FadeInView>
         <div className="flex w-full items-center justify-center gap-4 px-4 py-12">
-          <Image
+          {/* <Image
             src="/icon.png"
             alt="Icon"
             width={54}
@@ -17,7 +18,10 @@ export default function Home() {
             quality={100}
             priority
             className="min-w-[54px] transform-none" // Prevents blur and maintains minimum width
-          />
+          /> */}
+          <div>
+            <Rive />
+          </div>
           <Image
             src="/logo.svg"
             alt="Logo"
