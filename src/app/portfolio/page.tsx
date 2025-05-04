@@ -4,17 +4,29 @@ import Image from "next/image";
 import { Rive } from "@/components/Rive";
 import BlurDecoration from "@/components/BlurDecoration";
 import { InteractiveCircles } from "@/components/InteractiveCircles";
+import Header, { Highlight } from "@/components/Header";
+import CoreStats from "@/components/CoreStats";
+
 export default function Portfolio() {
   return (
     <main className="relative h-screen w-full overflow-y-auto overflow-x-hidden">
-      <InteractiveCircles size="600px" />
+      <FadeInView delay={0.5}>
+        <InteractiveCircles
+          size="600px"
+          mobileBreakpoint={768}
+          mobileSize="200px"
+          position={{ top: "0", left: "15%" }}
+        />
 
-      <InteractiveCircles
-        color="var(--highlight-blue)"
-        position={{ top: "0", right: "0" }}
-        size="400px"
-        sensitivity={3}
-      />
+        <InteractiveCircles
+          color="var(--highlight-blue)"
+          position={{ top: "-100px", right: "0" }}
+          size="400px"
+          sensitivity={3}
+          mobileBreakpoint={768}
+          mobileSize="180px"
+        />
+      </FadeInView>
 
       <FadeInView>
         <div className="flex w-full items-center justify-center gap-4 px-4 py-12">
@@ -32,7 +44,7 @@ export default function Portfolio() {
         </div>
       </FadeInView>
 
-      <FadeInView>
+      <FadeInView delay={0.3}>
         <h1 className="relative mx-auto max-w-[1300px] px-[15px] text-center text-4xl font-semibold md:text-[63px]">
           <BlurDecoration />
           <GradientText>
@@ -86,6 +98,24 @@ export default function Portfolio() {
             Dogo Lover
           </GradientText>
         </h1>
+      </FadeInView>
+
+      <FadeInView delay={0.4}>
+        <div className="mx-auto max-w-[1300px] space-y-8 px-[15px] py-12">
+          <Header
+            size="lg"
+            mobileSize="sm"
+            className="margin-0 relative z-10 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
+          >
+            My core <Highlight>stats</Highlight>
+          </Header>
+
+          <div className="relative -z-10">
+            <CoreStats className="relative z-10" />
+            {/* Background decoration */}
+            <div className="absolute left-1/2 top-1/2 -z-10 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--highlight-blue)] opacity-10 blur-[150px]" />
+          </div>
+        </div>
       </FadeInView>
     </main>
   );

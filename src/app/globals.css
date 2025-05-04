@@ -12,6 +12,17 @@
   --highlight-blue: #1fdbff;
 }
 
+/* Text selection styling */
+::selection {
+  background-color: var(--highlight-blue);
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: var(--highlight-blue);
+  color: #000000;
+}
+
 @theme {
   --animate-underline: underline 0.7s ease-in-out 0.5s forwards;
 
@@ -51,8 +62,22 @@
   }
 }
 
+@theme {
+  --animate-float: float 4s ease-in-out infinite;
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
 body {
   background: black;
   color: hsl(var(--foreground));
   font-family: var(--font-inter), system-ui, sans-serif;
+  min-height: 100vh;
 }
