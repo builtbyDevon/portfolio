@@ -5,6 +5,7 @@ import Sparkles from "@/components/Sparkles";
 import { TerminalAnimation } from "@/components/TerminalAnimation";
 import { Rive } from "@/components/Rive";
 import BlurDecoration from "@/components/BlurDecoration";
+import Projects, { exampleProjects } from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -75,7 +76,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-2xl">
           <TerminalAnimation />
           {/* <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-full bg-[var(--highlight-blue)] opacity-20 blur-[150px]" /> */}
-          <BlurDecoration />
+          <BlurDecoration className="absolute bottom-0 left-0 -z-10 h-[400px] w-full" />
           <Image
             src="/guy-coding.png"
             alt="Icon"

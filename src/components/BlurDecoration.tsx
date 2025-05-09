@@ -24,7 +24,7 @@ export const BlurDecoration: React.FC<BlurDecorationProps> = ({
 
   return (
     <div
-      className={`absolute -z-10 opacity-15 blur-[150px] ${positionClasses} ${className}`}
+      className={`absolute -z-10 opacity-15 blur-[150px] ${className}`}
       style={{
         backgroundColor: color,
         height,

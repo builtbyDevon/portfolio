@@ -101,6 +101,7 @@ const CoreStats: React.FC<CoreStatsProps> = ({ className = "" }) => {
         "Pocketbase",
         "Windows",
         "MacOS",
+        "Crypto",
       ],
     },
   ];

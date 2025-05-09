@@ -6,6 +6,7 @@ import BlurDecoration from "@/components/BlurDecoration";
 import { InteractiveCircles } from "@/components/InteractiveCircles";
 import Header, { Highlight } from "@/components/Header";
 import CoreStats from "@/components/CoreStats";
+import Projects, { exampleProjects } from "@/components/Projects";
 
 export default function Portfolio() {
   return (
@@ -117,6 +118,15 @@ export default function Portfolio() {
           </div>
         </div>
       </FadeInView>
+
+      <div className="relative">
+        <BlurDecoration
+          className="-translate-x-1/2"
+          width="50%"
+          color="var(--highlight-green)"
+        />
+        <Projects projects={exampleProjects} />
+      </div>
     </main>
   );
 }
