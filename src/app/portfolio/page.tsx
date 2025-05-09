@@ -10,7 +10,7 @@ import Projects, { exampleProjects } from "@/components/Projects";
 
 export default function Portfolio() {
   return (
-    <main className="relative h-screen w-full overflow-y-auto overflow-x-hidden">
+    <main className="relative w-full overflow-x-hidden">
       <FadeInView delay={0.5}>
         <InteractiveCircles
           size="600px"
@@ -40,7 +40,7 @@ export default function Portfolio() {
             width={337}
             height={337}
             style={{ height: "auto" }}
-            className="w-auto min-w-[50px] max-w-[337px]" // Sets minimum width and maintains aspect ratio
+            className="w-auto min-w-[50px] max-w-[337px]"
           />
         </div>
       </FadeInView>
@@ -106,27 +106,26 @@ export default function Portfolio() {
           <Header
             size="lg"
             mobileSize="sm"
-            className="margin-0 relative z-10 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
+            className="margin-0 relative z-50 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
           >
             My core <Highlight>stats</Highlight>
           </Header>
 
-          <div className="relative -z-10">
+          <div className="relative">
             <CoreStats className="relative z-10" />
-            {/* Background decoration */}
-            <div className="absolute left-1/2 top-1/2 -z-10 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--highlight-blue)] opacity-10 blur-[150px]" />
+            <BlurDecoration
+              size="80%"
+              color="var(--highlight-blue)"
+              opacity={0.1}
+              centered={true}
+            />
           </div>
         </div>
       </FadeInView>
 
-      <div className="relative">
-        <BlurDecoration
-          className="-translate-x-1/2"
-          width="50%"
-          color="var(--highlight-green)"
-        />
+      <FadeInView delay={0.5}>
         <Projects projects={exampleProjects} />
-      </div>
+      </FadeInView>
     </main>
   );
 }

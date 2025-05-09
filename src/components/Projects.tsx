@@ -19,32 +19,28 @@ const Projects = ({ projects }: ProjectsProps) => {
   return (
     <div className="mx-auto w-full max-w-[1300px] space-y-8 px-[15px] py-12">
       {/* Projects Header with Highlight */}
-      <FadeInView delay={0.8}>
-        <div className="flex flex-col">
-          <Header
-            size="lg"
-            mobileSize="sm"
-            className="relative z-10 mb-1 text-center uppercase text-white md:text-left"
-          >
-            My <Highlight>projects</Highlight>
-          </Header>
-        </div>
-      </FadeInView>
+      <div className="flex flex-col">
+        <Header
+          size="lg"
+          mobileSize="sm"
+          className="relative z-10 mb-1 text-center uppercase text-white md:text-left"
+        >
+          My <Highlight>projects</Highlight>
+        </Header>
+      </div>
 
       {/* Projects Grid */}
-      <FadeInView delay={0.9}>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              logoSrc={project.logoSrc}
-              techTags={project.techTags}
-              webUrl={project.webUrl}
-            />
-          ))}
-        </div>
-      </FadeInView>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            title={project.title}
+            logoSrc={project.logoSrc}
+            techTags={project.techTags}
+            webUrl={project.webUrl}
+          />
+        ))}
+      </div>
     </div>
   );
 };

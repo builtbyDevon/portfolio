@@ -40,27 +40,22 @@ const Header = ({
   children,
   className = "text-white uppercase",
   size = "md",
-  mobileSize = "sm", // Default to smaller size on mobile
-  mobileBreakpoint = 768, // Default mobile breakpoint
+  mobileSize = "sm",
+  mobileBreakpoint = 768,
 }: HeaderProps) => {
+  // Initialize isMobile to a sensible default or null if you want to explicitly handle the "unknown" state.
+  // For this fix, we'll assume non-mobile initially to avoid a large text flash on desktop during SSR.
   const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
-  // Check if we're on mobile and handle client-side rendering
   useEffect(() => {
-    setMounted(true);
-
     const checkMobile = () => {
       setIsMobile(window.innerWidth < mobileBreakpoint);
     };
+    checkMobile(); // Initial check on client mount
+    setHasMounted(true); // Indicate client-side has mounted and checked
 
-    // Initial check
-    checkMobile();
-
-    // Add resize listener
     window.addEventListener("resize", checkMobile);
-
-    // Cleanup
     return () => {
       window.removeEventListener("resize", checkMobile);
     };
@@ -79,17 +74,18 @@ const Header = ({
     ? ""
     : "tracking-[0.87em]";
 
-  // Handle size classes - use a temporary default for server rendering
-  // and then update when client-side renders
-  const sizeClass = !mounted
-    ? sizeClasses[size]
-    : isMobile
-      ? sizeClasses[mobileSize]
-      : sizeClasses[size];
+  let currentSizeClass;
+  if (!hasMounted) {
+    // During SSR or before client-side mount and check, use the default desktop size.
+    // Or, you could render nothing or a placeholder to avoid any flash, but that adds complexity.
+    currentSizeClass = sizeClasses[size];
+  } else {
+    currentSizeClass = isMobile ? sizeClasses[mobileSize] : sizeClasses[size];
+  }
 
   return (
     <div
-      className={`${kronaOne.variable} ${sizeClass} ${trackingClass} ${className}`}
+      className={`${kronaOne.variable} ${currentSizeClass} ${trackingClass} ${className}`}
       style={{ fontFamily: "var(--font-krona-one)" }}
     >
       {children}
@@ -97,8 +93,8 @@ const Header = ({
         className="pointer-events-none relative inline align-middle"
         src="/header-deco.svg"
         alt="Logo"
-        width={isMobile ? 35 : 55}
-        height={isMobile ? 37 : 37}
+        width={isMobile && hasMounted ? 35 : 55} // Only use isMobile for width if hasMounted
+        height={37}
         style={{ top: "-10px" }}
       />
     </div>

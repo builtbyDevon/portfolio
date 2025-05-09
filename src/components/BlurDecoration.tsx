@@ -3,32 +3,41 @@
 import React from "react";
 
 type BlurDecorationProps = {
-  color?: string;
-  height?: string;
-  width?: string;
-  className?: string;
-  centered?: boolean;
+  color?: string; // The central color of the gradient
+  size?: string; // Defines the diameter of the circular gradient
+  opacity?: number; // Opacity of the gradient itself (0 to 1)
+  className?: string; // For additional Tailwind classes or custom positioning
+  centered?: boolean; // If true, centers the decoration in its parent
 };
 
 export const BlurDecoration: React.FC<BlurDecorationProps> = ({
   color = "var(--highlight-blue)",
-  height = "400px",
-  width = "100%",
+  size = "300px", // Default diameter of the circle
+  opacity = 0.15, // Default opacity
   className = "",
   centered = true,
 }) => {
-  // Default to centered positioning, but allow overriding with className
+  // Determine positioning classes
+  // If centered, it will try to center. If a custom className provides positioning (e.g. top-0, left-0),
+  // that will override the default centering from `positionClasses`.
   const positionClasses = centered
     ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-    : "bottom-0 left-0";
+    : "bottom-0 left-0"; // Default non-centered position, can be overridden by `className`
 
   return (
     <div
-      className={`absolute -z-10 opacity-15 blur-[150px] ${className}`}
+      className={`pointer-events-none absolute -z-10 ${positionClasses} ${className}`}
       style={{
-        backgroundColor: color,
-        height,
-        width,
+        width: size,
+        height: size,
+        // The radial gradient:
+        // - Starts with the given color at the center.
+        // - Fades to transparent. The transparency starts effectively around 70.7% (sqrt(0.5)) for a smooth circular edge.
+        //   You can adjust the percentage (e.g., 50%, 60%) to control how quickly it fades.
+        // - `circle at center` ensures it's a perfect circle originating from the center.
+        background: `radial-gradient(circle at center, ${color} 0%, transparent 70%)`,
+        opacity: opacity,
+        // No CSS blur filter needed anymore
       }}
     />
   );

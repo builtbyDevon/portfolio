@@ -32,35 +32,44 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { top, right, bottom, left, translateX, translateY } = position;
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [isLikelyDesktop, setIsLikelyDesktop] = useState(false);
 
-  const currentSize = isMobile ? mobileSize : size;
-
-  const checkMobile = () => {
-    setIsMobile(window.innerWidth < mobileBreakpoint);
-  };
+  const currentSize = isMobileView ? mobileSize : size;
 
   useEffect(() => {
-    checkMobile();
-
-    window.addEventListener("resize", checkMobile);
-
+    const checkMobileView = () => {
+      setIsMobileView(window.innerWidth < mobileBreakpoint);
+    };
+    checkMobileView();
+    window.addEventListener("resize", checkMobileView);
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("resize", checkMobileView);
     };
   }, [mobileBreakpoint]);
 
   useEffect(() => {
+    setIsLikelyDesktop(
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!isLikelyDesktop || !containerRef.current) {
+      if (containerRef.current) {
+        containerRef.current.style.setProperty("--mouse-x", "0");
+        containerRef.current.style.setProperty("--mouse-y", "0");
+      }
+      return;
+    }
+
     const handleMouseMove = (event: MouseEvent) => {
       if (!containerRef.current) return;
-
       const rect = containerRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-
       const x = (event.clientX - centerX) * sensitivity;
       const y = (event.clientY - centerY) * sensitivity;
-
       containerRef.current.style.setProperty("--mouse-x", x.toString());
       containerRef.current.style.setProperty("--mouse-y", y.toString());
     };
@@ -70,7 +79,7 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [sensitivity]);
+  }, [isLikelyDesktop, sensitivity]);
 
   return (
     <div
