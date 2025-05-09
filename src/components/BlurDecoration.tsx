@@ -12,7 +12,6 @@ type BlurDecorationProps = {
 
 export const BlurDecoration: React.FC<BlurDecorationProps> = ({
   color = "var(--highlight-blue)",
-  size = "300px", // Default diameter of the circle
   opacity = 0.15, // Default opacity
   className = "",
   centered = true,
@@ -20,16 +19,11 @@ export const BlurDecoration: React.FC<BlurDecorationProps> = ({
   // Determine positioning classes
   // If centered, it will try to center. If a custom className provides positioning (e.g. top-0, left-0),
   // that will override the default centering from `positionClasses`.
-  const positionClasses = centered
-    ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-    : "bottom-0 left-0"; // Default non-centered position, can be overridden by `className`
 
   return (
     <div
-      className={`pointer-events-none absolute -z-10 ${positionClasses} ${className}`}
+      className={`pointer-events-none absolute -z-10 ${className}`}
       style={{
-        width: size,
-        height: size,
         // The radial gradient:
         // - Starts with the given color at the center.
         // - Fades to transparent. The transparency starts effectively around 70.7% (sqrt(0.5)) for a smooth circular edge.

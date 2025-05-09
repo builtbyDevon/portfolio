@@ -41,8 +41,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             className={`rounded-4xl group-hover:border-highlight-green/50 flex aspect-square items-center justify-center border-2 border-white/10 p-8 transition-all duration-300 ease-in-out`}
             style={{
               background: isHovered
-                ? "linear-gradient(338deg, rgb(38, 38, 38) 0%, rgba(33, 33, 36, 0) 34%, rgba(23, 26, 37, 0) 100%)"
-                : "linear-gradient(338deg, rgb(28, 28, 28) 0%, rgba(23, 23, 26, 0) 34%, rgba(13, 16, 27, 0) 100%)",
+                ? "linear-gradient(338deg, rgb(255 255 255 / 16%) 0%, rgba(23, 23, 26, 0) 66%, rgba(13, 16, 27, 0) 100%)"
+                : "linear-gradient(338deg, rgb(255 255 255 / 8%) 0%, rgba(23, 23, 26, 0) 34%, rgba(13, 16, 27, 0) 100%)",
             }}
           >
             {/* Logo Images Container */}

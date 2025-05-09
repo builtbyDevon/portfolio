@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 
 type CustomCursorProps = {
@@ -18,72 +18,93 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
   size = 8,
   ringSize = 36,
   ringColor = "var(--highlight-green)",
-  delay = 0.08,
+  delay = 0.05,
   hoverScale = 1.5,
   hoverElements = ["a", "button", ".clickable"],
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isActive, setIsActive] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-
-  // Memoize the checkHover function to use the latest mousePosition without dependency
-  const checkHover = useCallback(() => {
-    const hoveredElement = document.elementFromPoint(
-      mousePosition.x,
-      mousePosition.y
-    );
-    if (hoveredElement) {
-      // Check if the hovered element or any of its parents match our hover selectors
-      const isHovering = hoverElements.some((selector) => {
-        if (selector.startsWith(".")) {
-          // Class selector
-          const className = selector.substring(1);
-          return (
-            hoveredElement.classList.contains(className) ||
-            hoveredElement.closest(`.${className}`) !== null
-          );
-        } else {
-          // Tag selector
-          return (
-            hoveredElement.tagName.toLowerCase() === selector ||
-            hoveredElement.closest(selector) !== null
-          );
-        }
-      });
-
-      setIsHovering(isHovering);
-    }
-  }, [hoverElements, mousePosition]);
+  const [isLikelyDesktop, setIsLikelyDesktop] = useState(false);
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    // Initial delay to ensure everything is loaded before showing cursor
+    const desktopCheck = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
+    setIsLikelyDesktop(desktopCheck);
+
+    if (!desktopCheck) {
+      setIsActive(false);
+      document.body.style.cursor = "auto";
+      return;
+    }
+
     const timer = setTimeout(() => {
       setIsActive(true);
+      document.body.style.cursor = "none";
     }, 500);
-
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    // Add event listeners
-    window.addEventListener("mousemove", updateMousePosition);
-
-    // Hide default cursor
-    document.body.style.cursor = "none";
-
-    // Set up interval for checking hover state
-    const hoverInterval = setInterval(checkHover, 100);
 
     return () => {
       clearTimeout(timer);
-      clearInterval(hoverInterval);
-      window.removeEventListener("mousemove", updateMousePosition);
-      // Restore default cursor when component unmounts
-      document.body.style.cursor = "auto";
+      if (desktopCheck) {
+        // Only revert cursor if it was changed by this component
+        document.body.style.cursor = "auto";
+      }
     };
-  }, [checkHover]); // Only depend on the memoized checkHover
+    // Removed isActive from dependency array to avoid loop with document.body.style.cursor
+    // This effect should primarily run once on mount to set up based on desktop check.
+  }, []);
 
-  // Set up framer-motion transitions
+  const checkHoverState = useCallback(
+    (currentX: number, currentY: number) => {
+      if (!isLikelyDesktop) return;
+
+      const hoveredElement = document.elementFromPoint(currentX, currentY);
+      if (hoveredElement) {
+        const isCurrentlyHovering = hoverElements.some((selector) => {
+          if (selector.startsWith(".")) {
+            const className = selector.substring(1);
+            return (
+              hoveredElement.classList.contains(className) ||
+              hoveredElement.closest(`.${className}`) !== null
+            );
+          } else {
+            return (
+              hoveredElement.tagName.toLowerCase() === selector ||
+              hoveredElement.closest(selector) !== null
+            );
+          }
+        });
+        setIsHovering(isCurrentlyHovering);
+      }
+    },
+    [hoverElements, isLikelyDesktop]
+  );
+
+  useEffect(() => {
+    if (!isLikelyDesktop || !isActive) {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      return;
+    }
+
+    const updateMousePosition = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      checkHoverState(e.clientX, e.clientY);
+    };
+
+    window.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isLikelyDesktop, isActive, checkHoverState]);
+
   const cursorVariants = {
     default: {
       x: mousePosition.x - size / 2,
@@ -101,12 +122,10 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
     },
   };
 
-  // Don't render cursor if it's not active yet
-  if (!isActive) return null;
+  if (!isActive || !isLikelyDesktop) return null;
 
   return (
-    <div className="pointer-events-none fixed left-0 top-0 z-50 h-full w-full overflow-hidden">
-      {/* Main cursor dot */}
+    <div className="pointer-events-none fixed left-0 top-0 z-[9999] h-full w-full overflow-hidden">
       <motion.div
         className="absolute rounded-full"
         style={{
@@ -118,28 +137,27 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
         animate="default"
         transition={{
           type: "spring",
-          mass: 0.3,
-          stiffness: 800,
-          damping: 40,
+          mass: 0.1,
+          stiffness: 1200,
+          damping: 30,
         }}
       />
 
-      {/* Cursor outer ring */}
       <motion.div
         className="absolute rounded-full"
         style={{
           border: `1.5px solid ${ringColor}`,
           width: ringSize,
           height: ringSize,
-          backgroundColor: isHovering ? `${ringColor}20` : "transparent", // Add slight background on hover
+          backgroundColor: isHovering ? `${ringColor}20` : "transparent",
         }}
         variants={ringVariants}
         animate="default"
         transition={{
           type: "spring",
-          mass: 0.5,
-          stiffness: 300,
-          damping: 28,
+          mass: 0.2,
+          stiffness: 800,
+          damping: 35,
           delay: delay,
         }}
       />

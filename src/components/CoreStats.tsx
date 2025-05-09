@@ -81,7 +81,7 @@ const CoreStats: React.FC<CoreStatsProps> = ({ className = "" }) => {
         className={`w-full rounded-2xl p-8 md:p-12 md:backdrop-blur-md`}
         style={{
           background:
-            "linear-gradient(338deg, rgb(28 28 28) 0%, rgba(23, 23, 26, 0) 34%, rgba(13, 16, 27, 0) 100%)",
+            "linear-gradient(338deg, rgb(255 255 255 / 8%) 0%, rgba(23, 23, 26, 0) 34%, rgba(13, 16, 27, 0) 100%)",
         }}
       >
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">

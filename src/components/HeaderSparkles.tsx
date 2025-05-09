@@ -187,22 +187,42 @@ const HeaderSparkles = ({
   children,
   ...delegated
 }: SparklesProps) => {
-  // Ensure this component only runs on client side
   const [isMounted, setIsMounted] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const [sparkles, setSparkles] = useState<SparkleType[]>([]);
+  const wrapperRef = useRef<HTMLSpanElement>(null);
 
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  // Only initialize sparkles on the client side
   useEffect(() => {
     setIsMounted(true);
-    // Generate initial sparkles only after component is mounted on client
-    setSparkles(range(3).map(() => generateSparkle(color)));
-  }, [color]);
+  }, []);
+
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(wrapperRef.current);
+    return () => {
+      if (wrapperRef.current) {
+        observer.unobserve(wrapperRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMounted && isInView && sparkles.length === 0) {
+      setSparkles(range(3).map(() => generateSparkle(color)));
+    }
+  }, [isMounted, isInView, color, sparkles.length]);
 
   useRandomInterval(
     () => {
-      if (!isMounted) return;
+      if (!isMounted || !isInView) return;
 
       const sparkle = generateSparkle(color);
       const now = Date.now();
@@ -210,33 +230,25 @@ const HeaderSparkles = ({
         const delta = now - sp.createdAt;
         return delta < 750;
       });
-
       nextSparkles.push(sparkle);
       setSparkles(nextSparkles);
     },
-    prefersReducedMotion || !isMounted ? null : 50,
-    prefersReducedMotion || !isMounted ? null : 450
+    prefersReducedMotion || !isMounted || !isInView ? null : 50,
+    prefersReducedMotion || !isMounted || !isInView ? null : 450
   );
 
-  // Don't render sparkles on server, only the children
-  if (!isMounted) {
-    return (
-      <Wrapper {...delegated}>
-        <ChildWrapper>{children}</ChildWrapper>
-      </Wrapper>
-    );
-  }
-
   return (
-    <Wrapper {...delegated}>
-      {sparkles.map((sparkle) => (
-        <Sparkle
-          key={sparkle.id}
-          color={sparkle.color}
-          size={sparkle.size}
-          style={sparkle.style}
-        />
-      ))}
+    <Wrapper ref={wrapperRef} {...delegated}>
+      {isMounted &&
+        isInView &&
+        sparkles.map((sparkle) => (
+          <Sparkle
+            key={sparkle.id}
+            color={sparkle.color}
+            size={sparkle.size}
+            style={sparkle.style}
+          />
+        ))}
       <ChildWrapper>{children}</ChildWrapper>
     </Wrapper>
   );

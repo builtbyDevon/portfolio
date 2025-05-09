@@ -34,6 +34,7 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
   const { top, right, bottom, left, translateX, translateY } = position;
   const [isMobileView, setIsMobileView] = useState(false);
   const [isLikelyDesktop, setIsLikelyDesktop] = useState(false);
+  const [isInView, setIsInView] = useState(false);
 
   const currentSize = isMobileView ? mobileSize : size;
 
@@ -55,31 +56,49 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!isLikelyDesktop || !containerRef.current) {
-      if (containerRef.current) {
-        containerRef.current.style.setProperty("--mouse-x", "0");
-        containerRef.current.style.setProperty("--mouse-y", "0");
-      }
-      return;
-    }
+    if (!containerRef.current) return;
 
-    const handleMouseMove = (event: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const x = (event.clientX - centerX) * sensitivity;
-      const y = (event.clientY - centerY) * sensitivity;
-      containerRef.current.style.setProperty("--mouse-x", x.toString());
-      containerRef.current.style.setProperty("--mouse-y", y.toString());
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
 
-    window.addEventListener("mousemove", handleMouseMove);
-
+    observer.observe(containerRef.current);
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
     };
-  }, [isLikelyDesktop, sensitivity]);
+  }, []);
+
+  useEffect(() => {
+    if (isLikelyDesktop && isInView && containerRef.current) {
+      const handleMouseMove = (event: MouseEvent) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const x = (event.clientX - centerX) * sensitivity;
+        const y = (event.clientY - centerY) * sensitivity;
+        containerRef.current.style.setProperty("--mouse-x", x.toString());
+        containerRef.current.style.setProperty("--mouse-y", y.toString());
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+        if (containerRef.current) {
+          containerRef.current.style.setProperty("--mouse-x", "0");
+          containerRef.current.style.setProperty("--mouse-y", "0");
+        }
+      };
+    } else if (containerRef.current) {
+      containerRef.current.style.setProperty("--mouse-x", "0");
+      containerRef.current.style.setProperty("--mouse-y", "0");
+    }
+  }, [isLikelyDesktop, isInView, sensitivity]);
 
   return (
     <div
