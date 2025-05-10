@@ -71,7 +71,7 @@ const SkillCategoryItem: React.FC<SkillCategoryItemProps> = ({ category }) => {
       </h3>
 
       <div className="relative">
-        <div className="progress-bar-container mb-4 h-8 w-full overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-800/80 p-1">
+        <div className="progress-bar-container mb-4 h-[34px] w-full overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-800/80 p-1">
           <div
             className={`progress-bar-inner h-6 rounded-full ${isInView ? "progress-bar-animate" : ""}`}
             style={
