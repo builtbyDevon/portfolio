@@ -78,7 +78,7 @@ const CoreStats: React.FC<CoreStatsProps> = ({ className = "" }) => {
     <div className={`relative w-full ${className}`}>
       {/* Main content box - no longer transitions opacity based on 'mounted' */}
       <div
-        className={`w-full rounded-2xl p-8 md:p-12 md:backdrop-blur-md`}
+        className={`w-full rounded-2xl p-8 md:p-12`}
         style={{
           background:
             "linear-gradient(338deg, rgb(255 255 255 / 8%) 0%, rgba(23, 23, 26, 0) 34%, rgba(13, 16, 27, 0) 100%)",

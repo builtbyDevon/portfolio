@@ -31,7 +31,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <CursorTooltip text={`View ${title}`}>
       <Link target="_blank" href={`${webUrl}`}>
-        <FadeInView delay={1.2}>
+        <FadeInView delay={0}>
           <div
             className="group flex cursor-pointer flex-col gap-4 transition-all duration-300 ease-in-out"
             onMouseEnter={() => setIsHovered(true)}
