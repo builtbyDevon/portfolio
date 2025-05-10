@@ -104,9 +104,9 @@ export default function Portfolio() {
         </h1>
       </FadeInView>
 
-      <div className="mx-auto max-w-[1300px] px-[15px]">
+      <div className="mx-auto max-w-[1300px] px-[15px] py-12">
         <FadeInView className="backdrop-blur-lg" delay={0.8}>
-          <div className="mx-auto max-w-[1300px] space-y-8 py-12">
+          <div className="mx-auto max-w-[1300px] space-y-8 pb-12">
             <Header
               size="lg"
               mobileSize="sm"
