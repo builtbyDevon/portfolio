@@ -76,11 +76,9 @@ const SkillCategoryItem: React.FC<SkillCategoryItemProps> = ({ category }) => {
             className={`progress-bar-inner h-6 rounded-full ${isInView ? "progress-bar-animate" : ""}`}
             style={
               {
-                // Set the target width via a CSS custom property
                 "--progress-width": `${category.progress}%`,
+                background: `linear-gradient(270deg, ${category.color || "var(--highlight-green)"} -90%, rgba(23, 23, 26, 0) 41%, rgba(13, 16, 27, 0) 180%)`,
                 borderColor: category.color || "var(--highlight-green)",
-                // backgroundColor is transparent, border provides color/fill impression
-                // Other styles like border-radius are handled by Tailwind or direct CSS
               } as React.CSSProperties
             }
           />

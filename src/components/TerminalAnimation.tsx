@@ -155,7 +155,7 @@ export const TerminalAnimation = () => {
         background:
           "linear-gradient(180deg, rgb(30 30 30) 0%, rgba(0, 0, 0, 0.64) 28%, rgba(0, 0, 0, 0.20) 100%)",
       }}
-      className="font text-md outline-opacity-50 border-neutral-600s mx-auto my-8 min-h-80 w-full max-w-2xl rounded-3xl border border-neutral-700 bg-gradient-to-b p-4 text-neutral-200 shadow-xl"
+      className="font outline-opacity-50 border-neutral-600s mx-auto my-4 min-h-80 w-full max-w-2xl rounded-3xl border border-neutral-700 bg-gradient-to-b p-4 text-sm text-neutral-200 shadow-xl md:my-8 md:text-base"
     >
       <div className="mb-2 flex gap-2">
         <div className="h-3 w-3 rounded-full bg-red-500"></div>
