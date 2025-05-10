@@ -10,7 +10,7 @@ import Projects, { exampleProjects } from "@/components/Projects";
 
 export default function Portfolio() {
   return (
-    <main className="relative w-full overflow-x-hidden">
+    <main className="relative w-full overflow-hidden">
       <InteractiveCircles
         size="600px"
         mobileBreakpoint={768}
@@ -109,27 +109,26 @@ export default function Portfolio() {
           My core <Highlight>stats</Highlight>
         </Header>
 
-        <div className="relative">
-          <CoreStats className="relative z-10" />
-          <BlurDecoration
-            className="left-1/6 -top-80 h-[200vw] w-[200vw] -translate-x-1/2 md:-top-1/2 md:h-[80vw] md:w-[80vw]"
-            color="var(--highlight-blue)"
-            opacity={0.1}
-            centered={true}
-          />
-        </div>
+        <CoreStats className="relative z-10" />
       </div>
 
-      <div className="relative">
+      <div>
         <Projects projects={exampleProjects} />
-        <BlurDecoration
-          size="100%"
-          className="absolute -left-1/2 top-0"
-          color="var(--highlight-green)"
-          opacity={0.1}
-          centered={true}
-        />
       </div>
+
+      <BlurDecoration
+        className="left-1/6 md:-top-1/6 top-0 h-[200vw] w-[200vw] -translate-x-1/2 md:h-[90vw] md:w-[90vw]"
+        color="var(--highlight-blue)"
+        opacity={0.1}
+        centered={true}
+      />
+
+      <BlurDecoration
+        className="bottom-1/2 right-[-450px] h-[900px] w-[900px] md:bottom-0 md:right-[-30vw] md:h-[60vw] md:w-[60vw]"
+        color="var(--highlight-green)"
+        opacity={0.1}
+        centered={true}
+      />
     </main>
   );
 }
