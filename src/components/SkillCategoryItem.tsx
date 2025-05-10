@@ -66,7 +66,7 @@ const SkillCategoryItem: React.FC<SkillCategoryItemProps> = ({ category }) => {
 
   return (
     <div ref={itemRef} className={`relative scale-100 opacity-100`}>
-      <h3 className="P-2 mb-0 border-white/20 pb-2 text-center text-sm text-neutral-300 lg:text-base">
+      <h3 className="P-2 mb-0 border-white/20 pb-2 text-center text-sm font-bold tracking-wider text-neutral-300 lg:text-base">
         {category.title}
       </h3>
 

@@ -104,22 +104,24 @@ export default function Portfolio() {
         </h1>
       </FadeInView>
 
-      <FadeInView
-        className="mx-auto max-w-[1300px] backdrop-blur-lg"
-        delay={0.8}
-      >
-        <div className="mx-auto max-w-[1300px] space-y-8 px-[15px] py-12">
-          <Header
-            size="lg"
-            mobileSize="sm"
-            className="margin-0 relative z-50 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
-          >
-            My core <Highlight>stats</Highlight>
-          </Header>
+      <div className="15px">
+        <FadeInView
+          className="mx-auto max-w-[1300px] backdrop-blur-lg"
+          delay={0.8}
+        >
+          <div className="mx-auto max-w-[1300px] space-y-8 py-12">
+            <Header
+              size="lg"
+              mobileSize="sm"
+              className="margin-0 relative z-50 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
+            >
+              My core <Highlight>stats</Highlight>
+            </Header>
 
-          <CoreStats className="relative z-10" />
-        </div>
-      </FadeInView>
+            <CoreStats className="relative z-10" />
+          </div>
+        </FadeInView>
+      </div>
 
       <div>
         <Projects projects={exampleProjects} />
