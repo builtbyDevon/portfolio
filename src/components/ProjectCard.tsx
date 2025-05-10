@@ -74,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
             {/* Project Title */}
             <h3
-              className={`text-xl font-semibold transition-colors duration-300 ease-in-out ${
+              className={`transition-color3 ml-2 text-xl font-semibold duration-300 ease-in-out ${
                 isHovered ? "text-highlight-green" : "text-neutral-300"
               }`}
             >
