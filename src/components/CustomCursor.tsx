@@ -109,7 +109,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
     default: {
       x: mousePosition.x - size / 2,
       y: mousePosition.y - size / 2,
-      scale: isHovering ? 0 : 1,
+      scale: isHovering ? 0.4 : 1,
     },
   };
 

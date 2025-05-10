@@ -86,3 +86,23 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   min-height: 100dvh;
 }
+
+/* Progress Bar Styles for CoreStats */
+.progress-bar-inner {
+  width: 0%; /* Initial width before animation */
+  border-width: 1.5px; /* Explicitly set border-width if not covered by Tailwind default or reset */
+  border-style: solid; /* Ensure border-style is solid */
+  background-color: transparent; /* Ensure background is transparent */
+  transition-property: width;
+  transition-duration: 1.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.progress-bar-animate {
+  width: var(--progress-width); /* Animate to the target width */
+}
+
+/* Ensure the container for the progress bar has appropriate styles if needed,
+   though Tailwind classes in SkillCategoryItem.tsx mostly handle this. 
+   .progress-bar-container { ... } 
+*/

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react"; // Removed useEffect, useState, useRef
+import React, { useEffect, useState, useRef } from "react";
 // Image import is not used in this component
 
 // Type definition (can be shared or re-defined if kept separate)
@@ -37,31 +37,52 @@ const CheckMark = ({ color }: { color: string }) => (
 );
 
 const SkillCategoryItem: React.FC<SkillCategoryItemProps> = ({ category }) => {
-  // All states and effects related to in-view animations are removed
-  // const [isInView, setIsInView] = useState(false);
-  // const itemRef = useRef<HTMLDivElement>(null);
-  // useEffect(() => { ... observer logic ... }, []);
+  const [isInView, setIsInView] = useState(false);
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.unobserve(entry.target); // Animate once when it comes into view
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the item is visible
+      }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div
-      // ref no longer needed
-      className={`relative scale-100 opacity-100`} // Static classes: always visible, full scale, no blur
-    >
+    <div ref={itemRef} className={`relative scale-100 opacity-100`}>
       <h3 className="P-2 mb-0 border-white/20 pb-2 text-center text-sm text-neutral-300 lg:text-base">
         {category.title}
       </h3>
 
       <div className="relative">
-        <div className="mb-4 h-8 w-full overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-800/80 p-1">
+        <div className="progress-bar-container mb-4 h-8 w-full overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-800/80 p-1">
           <div
-            className="h-6"
-            style={{
-              width: `${category.progress}%`, // Progress bar width is now static
-              border: `1.5px solid ${category.color || "var(--highlight-green)"}`,
-              borderRadius: "9999px",
-              backgroundColor: "transparent",
-              // Transition styles removed
-            }}
+            className={`progress-bar-inner h-6 rounded-full ${isInView ? "progress-bar-animate" : ""}`}
+            style={
+              {
+                // Set the target width via a CSS custom property
+                "--progress-width": `${category.progress}%`,
+                borderColor: category.color || "var(--highlight-green)",
+                // backgroundColor is transparent, border provides color/fill impression
+                // Other styles like border-radius are handled by Tailwind or direct CSS
+              } as React.CSSProperties
+            }
           />
         </div>
         <ul className="space-y-2">

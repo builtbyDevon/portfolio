@@ -20,13 +20,15 @@ const Projects = ({ projects }: ProjectsProps) => {
     <div className="mx-auto w-full max-w-[1300px] space-y-8 px-[15px] py-12">
       {/* Projects Header with Highlight */}
       <div className="flex flex-col">
-        <Header
-          size="lg"
-          mobileSize="sm"
-          className="relative z-10 mb-1 text-center uppercase text-white md:text-left"
-        >
-          My <Highlight>projects</Highlight>
-        </Header>
+        <FadeInView delay={1.1}>
+          <Header
+            size="lg"
+            mobileSize="sm"
+            className="relative z-10 mb-1 text-center uppercase text-white md:text-left"
+          >
+            My <Highlight>projects</Highlight>
+          </Header>
+        </FadeInView>
       </div>
 
       {/* Projects Grid */}
