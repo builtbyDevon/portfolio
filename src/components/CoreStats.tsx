@@ -22,6 +22,7 @@ const skillCategories: SkillCategoryData[] = [
       "PHP",
       "Git",
       "Github",
+      "Expo",
       "Docker",
       "Cloudflare",
       "WordPress, Drupal, Concrete5",
@@ -60,7 +61,6 @@ const skillCategories: SkillCategoryData[] = [
       "Ubuntu Server",
       "NPM",
       "Command Line",
-      "Pocketbase",
       "Windows",
       "MacOS",
       "Crypto", // Added Crypto back as it was in the original before last edit

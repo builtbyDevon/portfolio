@@ -3,13 +3,32 @@ import Header, { Highlight } from "@/components/Header";
 import ProjectCard, { TechTag } from "./ProjectCard";
 import { FadeInView } from "./FadeInView";
 
-export type Project = {
+export type TechTag = {
+  name: string;
+  icon: string;
+};
+
+// Define the two possible structures for a project
+type ProjectWithSlug = {
   id: number;
   title: string;
   logoSrc: string;
   techTags: TechTag[];
-  webUrl: string;
+  slug: string; // Slug is present
+  webUrl?: string; // webUrl can be optional or present
 };
+
+type ProjectWithWebUrl = {
+  id: number;
+  title: string;
+  logoSrc: string;
+  techTags: TechTag[];
+  slug?: undefined; // Slug is explicitly not present or undefined
+  webUrl: string; // webUrl must be present
+};
+
+// The Project type is a union of these two
+export type Project = ProjectWithSlug | ProjectWithWebUrl;
 
 type ProjectsProps = {
   projects: Project[];
@@ -34,15 +53,21 @@ const Projects = ({ projects }: ProjectsProps) => {
       {/* Projects Grid */}
       <FadeInView delay={1.2}>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              logoSrc={project.logoSrc}
-              techTags={project.techTags}
-              webUrl={project.webUrl}
-            />
-          ))}
+          {projects.map((project) => {
+            console.log(
+              `Rendering card for: ${project.title}, slug: ${project.slug}, webUrl: ${project.webUrl}`
+            );
+            return (
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                logoSrc={project.logoSrc}
+                techTags={project.techTags}
+                webUrl={project.webUrl}
+                slug={project.slug}
+              />
+            );
+          })}
         </div>
       </FadeInView>
     </div>
@@ -97,14 +122,11 @@ const exampleProjects: Project[] = [
   },
   {
     id: 6,
-    title: "Bell Alliance",
+    title: "PokeDex",
     logoSrc: "/project-logos/bell-alliance.svg", // Using placeholder logo
-    webUrl: "https://www.bellalliance.ca/",
-    techTags: [
-      { name: "WordPress", icon: "/icons/wordpress.svg" },
-      { name: "HTML", icon: "/icons/html.svg" },
-      { name: "SASS", icon: "/icons/sass.svg" },
-    ],
+    // webUrl: "https://www.bellalliance.ca/",
+    techTags: [{ name: "Figma", icon: "/icons/wordpress.svg" }],
+    slug: "pokedex",
   },
   {
     id: 7,

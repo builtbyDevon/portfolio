@@ -123,7 +123,7 @@ export default function Portfolio() {
         </FadeInView>
       </div>
 
-      <div>
+      <div id="projects-section">
         <Projects projects={exampleProjects} />
       </div>
 
