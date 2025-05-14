@@ -142,50 +142,58 @@ export default function Portfolio() {
           centered={true}
         />
 
-        <h2 className="text-center text-4xl font-semibold md:text-6xl">
-          <GradientText className="text-center">
-            I'm currently <Highlight className="mr-2 italic">open</Highlight>{" "}
-            for opportunities!
-          </GradientText>
-        </h2>
+        <FadeInView delay={0.8}>
+          <h2 className="text-center text-4xl font-semibold md:text-6xl">
+            <GradientText className="text-center">
+              I'm currently <Highlight className="mr-2 italic">open</Highlight>{" "}
+              for opportunities!
+            </GradientText>
+          </h2>
+        </FadeInView>
 
-        <p className="py-8 text-center text-xl font-semibold md:text-3xl">
-          <GradientText>Shoot me an </GradientText>
-          <GradientText
-            href="mailto:devonwelchcodes@gmail.com"
-            highlight="var(--highlight-blue)"
-          >
-            email
-          </GradientText>
-          <GradientText>, or find me on </GradientText>
-          <GradientText
-            highlight="var(--highlight-green)"
-            href="https://www.linkedin.com/in/devon-welch-6b7724132/"
-          >
-            LinkedIn
-          </GradientText>
-        </p>
+        <FadeInView delay={1}>
+          <p className="py-8 text-center text-xl font-semibold md:text-3xl">
+            <GradientText>Shoot me an </GradientText>
+            <GradientText
+              href="mailto:devonwelchcodes@gmail.com"
+              highlight="var(--highlight-blue)"
+            >
+              email
+            </GradientText>
+            <GradientText>, or find me on </GradientText>
+            <GradientText
+              highlight="var(--highlight-green)"
+              href="https://www.linkedin.com/in/devon-welch-6b7724132/"
+            >
+              LinkedIn
+            </GradientText>
+          </p>
+        </FadeInView>
 
-        <Image
-          src="/footer-guy.png"
-          alt="Footer Guy"
-          width={248}
-          quality={100}
-          height={190}
-          className="mx-auto -mb-10 pt-8 md:pt-16"
-          style={{ height: "auto" }}
-        />
+        <FadeInView delay={1.1}>
+          <Image
+            src="/footer-guy.png"
+            alt="Footer Guy"
+            width={248}
+            quality={100}
+            height={190}
+            className="mx-auto -mb-10 pt-8 md:pt-16"
+            style={{ height: "auto" }}
+          />
+        </FadeInView>
 
-        <p className="md:text-md py-12 pb-6 text-center text-base text-neutral-50/30 md:pb-12">
-          console.log("You found the end!");
-        </p>
+        <FadeInView delay={1.2}>
+          <p className="md:text-md py-12 pb-6 text-center text-base text-neutral-50/30 md:pb-12">
+            console.log("You found the end!");
+          </p>
+        </FadeInView>
 
         <FooterConsoleLog message="Hey there! Thanks for viewing my portfolio <3" />
 
         <InteractiveCircles
           size="500px"
           mobileBreakpoint={1758}
-          mobileSize="350px"
+          mobileSize="300px"
           sensitivity={1}
           position={{ top: "0", left: "0%" }}
           mobilePosition={{ top: null, bottom: "0", left: "0%" }}
