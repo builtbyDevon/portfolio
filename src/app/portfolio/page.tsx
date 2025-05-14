@@ -177,7 +177,7 @@ export default function Portfolio() {
             width={248}
             quality={100}
             height={190}
-            className="mx-auto -mb-10 pt-8 md:pt-16"
+            className="mx-auto -mb-10 w-[150px] pt-2 md:w-auto md:pt-16"
             style={{ height: "auto" }}
           />
         </FadeInView>
