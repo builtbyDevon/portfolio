@@ -59,7 +59,7 @@ export default function Portfolio() {
               alt="Web Developer"
               width={42.75}
               height={42.75}
-              src="code.svg"
+              src="/code.svg"
               className="align-text-center inline-block"
             />{" "}
             Web Developer,{" "}
@@ -67,7 +67,7 @@ export default function Portfolio() {
               alt="Web Developer"
               width={42.75}
               height={42.75}
-              src="design.svg"
+              src="/design.svg"
               className="align-text-center inline-block"
             />{" "}
             Designer,{" "}
@@ -75,7 +75,7 @@ export default function Portfolio() {
               alt="Web Developer"
               width={42.75}
               height={42.75}
-              src="tech.svg"
+              src="/tech.svg"
               className="align-text-center inline-block"
             />{" "}
             Tech &{" "}
@@ -83,7 +83,7 @@ export default function Portfolio() {
               alt="Web Developer"
               width={42.75}
               height={42.75}
-              src="ai.svg"
+              src="/ai.svg"
               className="align-text-center inline-block"
             />{" "}
             AI Enthusiast,{" "}
@@ -91,7 +91,7 @@ export default function Portfolio() {
               alt="Web Developer"
               width={46.75}
               height={46.75}
-              src="gamer.svg"
+              src="/gamer.svg"
               className="align-text-center inline-block"
             />{" "}
             Gamer and{" "}
@@ -99,7 +99,7 @@ export default function Portfolio() {
               alt="Web Developer"
               width={42.75}
               height={42.75}
-              src="dogo.svg"
+              src="/dogo.svg"
               className="align-text-center inline-block"
             />{" "}
             Dogo Lover
@@ -123,7 +123,7 @@ export default function Portfolio() {
         </FadeInView>
       </div>
 
-      <div id="projects-section" style={{ scrollMarginTop: "80px" }}>
+      <div id="projects-section">
         <Projects projects={exampleProjects} />
       </div>
 
