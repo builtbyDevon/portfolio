@@ -82,7 +82,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </h3>
 
             {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 md:gap-2">
               {techTags.map((tag, index) => (
                 <div
                   key={index}

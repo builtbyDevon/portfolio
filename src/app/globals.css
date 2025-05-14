@@ -80,6 +80,10 @@
   }
 }
 
+@theme {
+  --breakpoint-desktop: 1758px;
+}
+
 body {
   background: #0d0d0d;
   color: hsl(var(--foreground));

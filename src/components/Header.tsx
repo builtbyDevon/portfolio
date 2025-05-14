@@ -21,7 +21,7 @@ export const Highlight = ({
   className?: string;
 }) => (
   <HeaderSparkles color="var(--highlight-green)">
-    <span className={`uppercase text-[var(--highlight-green)] ${className}`}>
+    <span className={`text-[var(--highlight-green)] ${className}`}>
       {children}
     </span>
   </HeaderSparkles>

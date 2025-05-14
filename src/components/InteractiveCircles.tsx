@@ -2,6 +2,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
+type PositionProps = {
+  top?: string | undefined | null;
+  right?: string | undefined | null;
+  bottom?: string | undefined | null;
+  left?: string | undefined | null;
+  translateX?: string | undefined | null;
+  translateY?: string | undefined | null;
+};
+
 type InteractiveCirclesProps = {
   size?: string;
   mobileSize?: string;
@@ -9,19 +18,13 @@ type InteractiveCirclesProps = {
   className?: string;
   animationDuration?: string;
   sensitivity?: number;
-  scrollSensitivity?: number;
-  position?: {
-    top?: string;
-    right?: string;
-    bottom?: string;
-    left?: string;
-    translateX?: string;
-    translateY?: string;
-  };
+  position?: PositionProps;
+  mobilePosition?: PositionProps;
   mobileBreakpoint?: number;
   initialY?: number;
   initialScale?: number;
   animationDelay?: number;
+  children?: React.ReactNode;
 };
 
 export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
@@ -31,15 +34,15 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
   className = "",
   animationDuration = "4s",
   sensitivity = 1,
-  scrollSensitivity = 0.1,
   position = {},
+  mobilePosition = {},
   mobileBreakpoint = 768,
   initialY = 20,
   initialScale = 0.95,
   animationDelay = 0,
+  children,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { top, right, bottom, left, translateX, translateY } = position;
   const [isMobileView, setIsMobileView] = useState(false);
   const [isLikelyDesktop, setIsLikelyDesktop] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -56,6 +59,26 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
     window.addEventListener("resize", checkMobileView);
     return () => window.removeEventListener("resize", checkMobileView);
   }, [mobileBreakpoint]);
+
+  const activePosition = isMobileView
+    ? { ...position, ...mobilePosition }
+    : position;
+
+  const {
+    top: activeTop,
+    right: activeRight,
+    bottom: activeBottom,
+    left: activeLeft,
+    translateX: activeTranslateX,
+    translateY: activeTranslateY,
+  } = activePosition;
+
+  const finalTop = activeTop;
+  const finalRight = activeRight;
+  const finalBottom = activeBottom;
+  const finalLeft = activeLeft;
+  const baseTranslateX = activeTranslateX || "0px";
+  const baseTranslateY = activeTranslateY || "0px";
 
   useEffect(() => {
     setIsLikelyDesktop(
@@ -91,15 +114,28 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
 
   useEffect(() => {
     if (isLikelyDesktop && isInView && containerRef.current) {
+      let ticking = false;
+
       const handleMouseMove = (event: MouseEvent) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const x = (event.clientX - centerX) * sensitivity;
-        const y = (event.clientY - centerY) * sensitivity;
-        containerRef.current.style.setProperty("--mouse-x", x.toString());
-        containerRef.current.style.setProperty("--mouse-y", y.toString());
+        const { clientX, clientY } = event;
+
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            if (!containerRef.current) {
+              ticking = false;
+              return;
+            }
+            const rect = containerRef.current.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const x = (clientX - centerX) * sensitivity;
+            const y = (clientY - centerY) * sensitivity;
+            containerRef.current.style.setProperty("--mouse-x", x.toString());
+            containerRef.current.style.setProperty("--mouse-y", y.toString());
+            ticking = false;
+          });
+          ticking = true;
+        }
       };
       window.addEventListener("mousemove", handleMouseMove);
       return () => {
@@ -115,38 +151,12 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
     }
   }, [isLikelyDesktop, isInView, sensitivity]);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (containerRef.current) {
-            const scrollYOffset = window.scrollY * scrollSensitivity;
-            containerRef.current.style.setProperty(
-              "--scroll-parallax-y",
-              `${scrollYOffset}px`
-            );
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollSensitivity]);
-
-  const baseTranslateX = translateX || "0px";
-  const baseTranslateY = translateY || "0px";
-
   const entranceTransformY = hasAnimatedIn ? 0 : initialY;
   const entranceScale = hasAnimatedIn ? 1 : initialScale;
 
   const finalTransform = `
     translateX(calc(${baseTranslateX} + var(--mouse-x, 0) * -0.02px))
-    translateY(calc(${baseTranslateY} + ${entranceTransformY}px + var(--mouse-y, 0) * -0.02px + var(--scroll-parallax-y, 0px)))
+    translateY(calc(${baseTranslateY} + ${entranceTransformY}px + var(--mouse-y, 0) * -0.02px))
     scale(${entranceScale})
   `;
 
@@ -165,12 +175,16 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
         transition: applyEntranceTransition
           ? `opacity ${entranceAnimationDuration}s ease-out, transform ${entranceAnimationDuration}s ease-out`
           : "none",
-        top,
-        right,
-        bottom,
-        left,
+        willChange: "transform, opacity",
+        top: finalTop === null ? undefined : finalTop,
+        right: finalRight === null ? undefined : finalRight,
+        bottom: finalBottom === null ? undefined : finalBottom,
+        left: finalLeft === null ? undefined : finalLeft,
       }}
     >
+      {children}
+
+      {/* Spot for embedded div with absolute properites */}
       <div
         className="absolute rounded-full opacity-5"
         style={{
