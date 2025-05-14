@@ -123,7 +123,7 @@ export default function Portfolio() {
         </FadeInView>
       </div>
 
-      <div id="projects-section">
+      <div id="projects-section" style={{ scrollMarginTop: "80px" }}>
         <Projects projects={exampleProjects} />
       </div>
 

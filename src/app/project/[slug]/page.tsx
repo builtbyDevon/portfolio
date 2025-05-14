@@ -26,7 +26,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           {/* Back Link */}
           <div className="mb-12">
             <Link
-              href="/portfolio#projects-section"
+              href="/portfolio"
               className="text-highlight-green group inline-flex items-center transition-colors hover:text-white"
             >
               <svg
@@ -43,7 +43,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               >
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
-              Back to Projects
+              Back to Home
             </Link>
           </div>
 

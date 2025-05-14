@@ -1,6 +1,6 @@
 import React from "react";
 import Header, { Highlight } from "@/components/Header";
-import ProjectCard, { TechTag } from "./ProjectCard";
+import ProjectCard from "./ProjectCard";
 import { FadeInView } from "./FadeInView";
 
 export type TechTag = {
@@ -123,43 +123,10 @@ const exampleProjects: Project[] = [
   {
     id: 6,
     title: "PokeDex",
-    logoSrc: "/project-logos/bell-alliance.svg", // Using placeholder logo
+    logoSrc: "/project-logos/pokedex.svg", // Using placeholder logo
     // webUrl: "https://www.bellalliance.ca/",
-    techTags: [{ name: "Figma", icon: "/icons/wordpress.svg" }],
+    techTags: [{ name: "Figma", icon: "/icons/figma.svg" }],
     slug: "pokedex",
-  },
-  {
-    id: 7,
-    title: "APEX Granite",
-    logoSrc: "/project-logos/apex.svg", // Using placeholder logo
-    webUrl: "https://apexgranite.com",
-    techTags: [
-      { name: "WordPress", icon: "/icons/wordpress.svg" },
-      { name: "HTML", icon: "/icons/html.svg" },
-      { name: "SASS", icon: "/icons/sass.svg" },
-    ],
-  },
-  {
-    id: 8,
-    title: "Jags",
-    logoSrc: "/project-logos/jags.svg", // Using placeholder logo
-    webUrl: "https://stayatjags.com/",
-    techTags: [
-      { name: "Concrete", icon: "/icons/concrete.svg" },
-      { name: "HTML", icon: "/icons/html.svg" },
-      { name: "SASS", icon: "/icons/sass.svg" },
-    ],
-  },
-  {
-    id: 9,
-    title: "Mover | Cam",
-    logoSrc: "/project-logos/cam.svg", // Using placeholder logo
-    webUrl: "https://www.mover.net/",
-    techTags: [
-      { name: "Drupal", icon: "/icons/drupal.svg" },
-      { name: "HTML", icon: "/icons/html.svg" },
-      { name: "SASS", icon: "/icons/sass.svg" },
-    ],
   },
 ];
 
