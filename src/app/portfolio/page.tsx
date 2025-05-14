@@ -142,7 +142,7 @@ export default function Portfolio() {
           centered={true}
         />
 
-        <FadeInView delay={0.8}>
+        <FadeInView>
           <h2 className="text-center text-4xl font-semibold md:text-6xl">
             <GradientText className="text-center">
               I'm currently <Highlight className="mr-2 italic">open</Highlight>{" "}
@@ -151,7 +151,7 @@ export default function Portfolio() {
           </h2>
         </FadeInView>
 
-        <FadeInView delay={1}>
+        <FadeInView>
           <p className="py-8 text-center text-xl font-semibold md:text-3xl">
             <GradientText>Shoot me an </GradientText>
             <GradientText
@@ -170,7 +170,7 @@ export default function Portfolio() {
           </p>
         </FadeInView>
 
-        <FadeInView delay={1.1}>
+        <FadeInView>
           <Image
             src="/footer-guy.png"
             alt="Footer Guy"
@@ -182,7 +182,7 @@ export default function Portfolio() {
           />
         </FadeInView>
 
-        <FadeInView delay={1.2}>
+        <FadeInView delay={0.7}>
           <p className="md:text-md py-12 pb-6 text-center text-base text-neutral-50/30 md:pb-12">
             console.log("You found the end!");
           </p>

@@ -28,7 +28,7 @@ const kronaOne = Krona_One({
 });
 
 export const metadata: Metadata = {
-  title: "Devon's Portfolio",
+  title: "Devon Welch - Portfolio",
   description: "Portfolio website showcasing my work and skills",
 };
 
