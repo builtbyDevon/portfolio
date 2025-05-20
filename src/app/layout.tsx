@@ -1,18 +1,19 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// File: src/app/layout.tsx
+// import { Geist, Geist_Mono } from "next/font/google"; // REMOVE or comment out
 import { Inter, Krona_One } from "next/font/google";
 import "./globals.css";
 import type { Metadata } from "next";
-import ClientCursor from "@/components/ClientCursor";
+// import ClientCursor from "@/components/ClientCursor"; // Assuming you might use this later
 
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
+// const geistSans = Geist({ // REMOVE or comment out
+//   subsets: ["latin"],
+//   variable: "--font-geist-sans",
+// });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
+// const geistMono = Geist_Mono({ // REMOVE or comment out
+//   subsets: ["latin"],
+//   variable: "--font-geist-mono",
+// });
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,10 +41,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${kronaOne.variable}`}
+      // className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${kronaOne.variable}`} // Original
+      className={`${inter.variable} ${kronaOne.variable}`} // MODIFIED: Removed Geist variables
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">
+        {" "}
+        {/* Ensure your globals.css defines fallback for font-sans if Geist was primary */}
         {children}
         {/* <ClientCursor /> */}
       </body>

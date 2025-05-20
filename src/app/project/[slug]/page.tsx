@@ -1,10 +1,12 @@
+// File: C:/Users/devie/OneDrive/Documents/Portfolio/my-app/src/app/project/[slug]/page.tsx
 import Image from "next/image";
-import Link from "next/link"; // Next.js Link
-import { getProjectBySlug, Project } from "@/lib/projectData"; // Adjust path if needed
+import Link from "next/link";
+import { getProjectBySlug, type Project } from "@/lib/projectData";
 import { notFound } from "next/navigation";
-import { GradientText } from "@/components/GradientText"; // Assuming you want to use this
-import { Highlight } from "@/components/Header"; // Assuming you want to use this
-import { FadeInView } from "@/components/FadeInView"; // For smooth loading
+import { GradientText } from "@/components/GradientText";
+import { Highlight } from "@/components/Header";
+import { FadeInView } from "@/components/FadeInView";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface ProjectPageProps {
   params: {
@@ -12,13 +14,43 @@ interface ProjectPageProps {
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = getProjectBySlug(params.slug);
+// Helper function to fetch data specifically for this page context
+async function fetchProjectData(slug: string): Promise<Project | undefined> {
+  // You could add more complex logic here if needed,
+  // but for now, it just wraps getProjectBySlug
+  return getProjectBySlug(slug);
+}
+
+export async function generateMetadata(
+  { params }: ProjectPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const projectSlug = params.slug; // Assign to a new variable first
+  const project = await fetchProjectData(projectSlug); // Use the new variable
 
   if (!project) {
-    notFound(); // Triggers the Next.js 404 page
+    return { title: "Project Not Found" };
+  }
+  return {
+    title: `${project.title} | Portfolio`,
+    description: project.subtitle,
+  };
+}
+
+export async function generateStaticParams() {
+  const { projects } = await import("@/lib/projectData");
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const projectSlug = params.slug; // Assign to a new variable first
+  const project = await fetchProjectData(projectSlug); // Use the new variable
+
+  if (!project) {
+    notFound();
   }
 
+  // ... rest of your component JSX
   return (
     <FadeInView>
       <main className="min-h-screen bg-[#0D0D0D] px-4 py-12 text-neutral-200 md:px-8">
@@ -43,7 +75,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               >
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
-              Back to Home
+              Back to Portfolio
             </Link>
           </div>
 
@@ -69,26 +101,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             )}
           </header>
 
-          {/* Image Gallery/Showcase */}
-          <section className="mb-16 space-y-8">
-            {/* {project.images.map((image, index) => (
-              <div key={index} className="rounded-lg overflow-hidden shadow-2xl">
-                {image.caption && (
-                  <p className="text-center text-neutral-400 py-3 bg-neutral-800/50 text-sm tracking-widest uppercase">
-                    {image.caption}
-                  </p>
-                )}
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={1200} // Provide appropriate base width
-                  height={800} // Provide appropriate base height
-                  className="w-full h-auto object-contain"
-                  priority={index < 2} // Prioritize loading for first couple of images
-                />
-              </div>
-            ))} */}
-          </section>
+          {/* Content Area */}
+          <section className="mb-16 space-y-8">{project.content}</section>
 
           {/* Content Sections (Goals, Tools Used, etc.) */}
           <section className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2">
@@ -142,12 +156,3 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     </FadeInView>
   );
 }
-
-// Optional: Generate static paths if you know all project slugs at build time
-// This improves performance.
-// export async function generateStaticParams() {
-//   const { projects } = await import("@/lib/projectData"); // Or however you fetch all projects
-//   return projects.map((project) => ({
-//     slug: project.slug,
-//   }));
-// }
