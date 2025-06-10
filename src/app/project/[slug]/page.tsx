@@ -33,7 +33,7 @@ export async function generateMetadata(
   }
   return {
     title: `${project.title} | Portfolio`,
-    description: project.subtitle,
+    description: `${project.subtitleBig} ${project.subtitleSmall}`,
   };
 }
 
@@ -84,18 +84,32 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h1 className="mb-4 text-4xl font-bold md:text-6xl">
               <GradientText>{project.title}</GradientText>
             </h1>
-            <p className="mb-2 text-lg text-neutral-400 md:text-xl">
-              {project.subtitle}
+            <p className="text-[20px] text-neutral-300 md:text-[30px]">
+              {project.subtitleBig}
             </p>
-            {project.conceptTags && project.conceptTags.length > 0 && (
-              <div className="mt-4 flex justify-center gap-2">
-                {project.conceptTags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-highlight-green rounded-full bg-neutral-700/50 px-3 py-1 text-xs"
+            <p className="text-base text-neutral-400 md:text-xl">
+              {project.subtitleSmall}
+            </p>
+            {project.extraDetails && project.extraDetails.length > 0 && (
+              <p className="mt-2 text-[14px] uppercase tracking-widest text-[var(--highlight-blue)]">
+                {project.extraDetails.join(" • ")}
+              </p>
+            )}
+            {project.detailTags && project.detailTags.length > 0 && (
+              <div className="mt-4 flex flex-wrap justify-center gap-3">
+                {project.detailTags.map((tag) => (
+                  <div
+                    key={tag.name}
+                    className="flex items-center gap-2 rounded-full bg-neutral-700/50 px-4 py-2 text-sm font-medium text-neutral-300"
                   >
-                    {tag}
-                  </span>
+                    <Image
+                      src={tag.icon}
+                      alt={tag.name}
+                      width={20}
+                      height={20}
+                    />
+                    <span>{tag.name}</span>
+                  </div>
                 ))}
               </div>
             )}
@@ -107,21 +121,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Content Sections (Goals, Tools Used, etc.) */}
           <section className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2">
             {project.sections.map((section, index) => (
-              <div key={index}>
-                <h2 className="border-highlight-green mb-6 border-l-4 pl-4 text-2xl font-semibold md:text-3xl">
-                  {section.title}
-                </h2>
-                {Array.isArray(section.content) ? (
-                  <ul className="list-inside list-disc space-y-3 text-base leading-relaxed text-neutral-300 md:text-lg">
-                    {section.content.map((item, itemIndex) => (
-                      <li key={itemIndex}>{item}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-base leading-relaxed text-neutral-300 md:text-lg">
-                    {section.content}
-                  </p>
-                )}
+              <div key={index} className="gap-4">
+                <div className="mb-4 flex items-center gap-4">
+                  <Image
+                    src={section.icon}
+                    alt="Section Icon"
+                    width={48}
+                    height={34}
+                    quality={100}
+                    className="mt-0 h-[48px] w-[48px]"
+                  />
+                  <h2 className="text-2xl font-semibold md:text-3xl">
+                    {section.title}
+                  </h2>
+                </div>
+                <div>
+                  {Array.isArray(section.content) ? (
+                    <ul className="text-highlight-green list-inside list-disc space-y-3 text-base leading-relaxed md:text-lg">
+                      {section.content.map((item, itemIndex) => (
+                        <li key={itemIndex}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-highlight-green text-base leading-relaxed md:text-lg">
+                      {section.content}
+                    </p>
+                  )}
+                </div>
               </div>
             ))}
           </section>

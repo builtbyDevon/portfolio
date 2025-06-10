@@ -110,3 +110,7 @@ body {
    though Tailwind classes in SkillCategoryItem.tsx mostly handle this. 
    .progress-bar-container { ... } 
 */
+
+html {
+  scroll-behavior: smooth;
+}
