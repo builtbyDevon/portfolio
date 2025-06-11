@@ -4,9 +4,11 @@ import Link from "next/link";
 import { getProjectBySlug, type Project } from "@/lib/projectData";
 import { notFound } from "next/navigation";
 import { GradientText } from "@/components/GradientText";
-import { Highlight } from "@/components/Header";
 import { FadeInView } from "@/components/FadeInView";
 import { Metadata, ResolvingMetadata } from "next";
+import { InteractiveCircles } from "@/components/InteractiveCircles";
+import BlurDecoration from "@/components/BlurDecoration";
+import Footer from "@/components/Footer";
 
 interface ProjectPageProps {
   params: {
@@ -52,11 +54,36 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   // ... rest of your component JSX
   return (
-    <FadeInView>
-      <main className="min-h-screen bg-[#0D0D0D] px-4 py-12 text-neutral-200 md:px-8">
-        <div className="mx-auto max-w-5xl">
-          {/* Back Link */}
-          <div className="mb-12">
+    <main className="relative min-h-screen overflow-hidden bg-[#0D0D0D] px-4 py-12 text-neutral-200 md:px-8">
+      <InteractiveCircles
+        mobileSize="200px"
+        tabletSize="400px"
+        size="600px"
+        mobileBreakpoint={850}
+        tabletBreakpoint={2000}
+        className="z-10"
+        mobilePosition={{ top: "0", left: "-15%" }}
+        tabletPosition={{ top: "0", left: "-20%" }}
+        position={{ top: "0", left: "15%" }}
+      />
+
+      <InteractiveCircles
+        mobileSize="180px"
+        size="800px"
+        mobileBreakpoint={850}
+        tabletBreakpoint={2000}
+        color="var(--highlight-blue)"
+        position={{ top: "-400px", right: "0" }}
+        mobilePosition={{ top: "-50px", right: "0" }}
+        tabletPosition={{ top: "-100px", right: "0" }}
+        className="z-10"
+        sensitivity={3}
+      />
+
+      <div className="relative z-50 mx-auto max-w-5xl">
+        {/* Back Link */}
+        <div className="mb-12">
+          <FadeInView>
             <Link
               href="/portfolio"
               className="text-highlight-green group inline-flex items-center transition-colors hover:text-white"
@@ -77,9 +104,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </svg>
               Back to Portfolio
             </Link>
-          </div>
+          </FadeInView>
+        </div>
 
-          {/* Header Section */}
+        {/* Header Section */}
+        <FadeInView>
           <header className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold md:text-6xl">
               <GradientText>{project.title}</GradientText>
@@ -91,7 +120,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.subtitleSmall}
             </p>
             {project.extraDetails && project.extraDetails.length > 0 && (
-              <p className="mt-2 text-[14px] uppercase tracking-widest text-[var(--highlight-blue)]">
+              <p className="mt-8 text-[12px] uppercase tracking-widest text-[var(--highlight-blue)]">
                 {project.extraDetails.join(" • ")}
               </p>
             )}
@@ -114,11 +143,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </div>
             )}
           </header>
+        </FadeInView>
 
-          {/* Content Area */}
+        {/* Content Area */}
+        <FadeInView delay={0.5}>
           <section className="mb-16 space-y-8">{project.content}</section>
+        </FadeInView>
 
-          {/* Content Sections (Goals, Tools Used, etc.) */}
+        {/* Content Sections (Goals, Tools Used, etc.) */}
+        <FadeInView delay={0.5}>
           <section className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2">
             {project.sections.map((section, index) => (
               <div key={index} className="gap-4">
@@ -151,8 +184,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </div>
             ))}
           </section>
+        </FadeInView>
 
-          {/* Optional Links (Live Site, Repo) */}
+        {/* Optional Links (Live Site, Repo) */}
+        <FadeInView>
           {(project.liveLink || project.repoLink) && (
             <section className="mb-8 mt-16 text-center">
               {project.liveLink && (
@@ -177,8 +212,38 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               )}
             </section>
           )}
-        </div>
-      </main>
-    </FadeInView>
+        </FadeInView>
+      </div>
+
+      <FadeInView>
+        <h2 className="mb-12 mt-20 text-center text-2xl font-semibold md:text-3xl">
+          <p>
+            Back to
+            <Link
+              href="/portfolio"
+              className="text-highlight-green ml-3 underline hover:text-white"
+            >
+              ← Portfolio
+            </Link>
+          </p>
+        </h2>
+      </FadeInView>
+
+      <Footer />
+
+      <BlurDecoration
+        className="left-1/6 md:-top-1/6 top-0 z-10 h-[200vw] w-[200vw] -translate-x-1/2 md:h-[90vw] md:w-[90vw]"
+        color="var(--highlight-blue)"
+        opacity={0.1}
+        centered={true}
+      />
+
+      <BlurDecoration
+        className="bottom-1/2 right-[-450px] z-10 h-[900px] w-[900px] md:bottom-0 md:right-[-30vw] md:h-[60vw] md:w-[60vw]"
+        color="var(--highlight-green)"
+        opacity={0.1}
+        centered={true}
+      />
+    </main>
   );
 }

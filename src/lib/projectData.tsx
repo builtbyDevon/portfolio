@@ -75,7 +75,7 @@ export const projects: Project[] = [
           MORE <Highlight>LIGHT MODE</Highlight>
         </Header>
 
-        <div className="flex justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 md:justify-between">
           <Image
             src="/project-images/pokedex/pokedex-3.png"
             alt="PokeDex"

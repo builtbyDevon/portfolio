@@ -14,13 +14,16 @@ type PositionProps = {
 type InteractiveCirclesProps = {
   size?: string;
   mobileSize?: string;
+  tabletSize?: string;
   color?: string;
   className?: string;
   animationDuration?: string;
   sensitivity?: number;
   position?: PositionProps;
   mobilePosition?: PositionProps;
+  tabletPosition?: PositionProps;
   mobileBreakpoint?: number;
+  tabletBreakpoint?: number;
   initialY?: number;
   initialScale?: number;
   animationDelay?: number;
@@ -30,13 +33,16 @@ type InteractiveCirclesProps = {
 export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
   size = "500px",
   mobileSize = "300px",
+  tabletSize = "400px",
   color = "var(--highlight-green)",
   className = "",
   animationDuration = "4s",
   sensitivity = 1,
   position = {},
   mobilePosition = {},
+  tabletPosition = {},
   mobileBreakpoint = 768,
+  tabletBreakpoint = 1024,
   initialY = 20,
   initialScale = 0.95,
   animationDelay = 0,
@@ -44,25 +50,37 @@ export const InteractiveCircles: React.FC<InteractiveCirclesProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [isTabletView, setIsTabletView] = useState(false);
   const [isLikelyDesktop, setIsLikelyDesktop] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
   const [applyEntranceTransition, setApplyEntranceTransition] = useState(true);
 
-  const currentSize = isMobileView ? mobileSize : size;
+  const currentSize = isMobileView
+    ? mobileSize
+    : isTabletView
+      ? tabletSize
+      : size;
   const entranceAnimationDuration = 0.6;
 
   useEffect(() => {
-    const checkMobileView = () =>
+    const checkView = () => {
       setIsMobileView(window.innerWidth < mobileBreakpoint);
-    checkMobileView();
-    window.addEventListener("resize", checkMobileView);
-    return () => window.removeEventListener("resize", checkMobileView);
-  }, [mobileBreakpoint]);
+      setIsTabletView(
+        window.innerWidth >= mobileBreakpoint &&
+          window.innerWidth < tabletBreakpoint
+      );
+    };
+    checkView();
+    window.addEventListener("resize", checkView);
+    return () => window.removeEventListener("resize", checkView);
+  }, [mobileBreakpoint, tabletBreakpoint]);
 
   const activePosition = isMobileView
     ? { ...position, ...mobilePosition }
-    : position;
+    : isTabletView
+      ? { ...position, ...tabletPosition }
+      : position;
 
   const {
     top: activeTop,
