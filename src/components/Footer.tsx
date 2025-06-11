@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
       </FadeInView>
 
       <FadeInView delay={0.7}>
-        <p className="md:text-md py-12 pb-6 text-center text-base text-neutral-50/30 md:pb-12">
+        <p className="md:text-md py-12 pb-6 text-center text-sm text-neutral-50/30 md:pb-12">
           console.log("You found the end!");
         </p>
       </FadeInView>

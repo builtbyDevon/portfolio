@@ -170,7 +170,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </div>
                 <div>
                   {Array.isArray(section.content) ? (
-                    <ul className="text-highlight-green list-inside list-disc space-y-3 text-base leading-relaxed md:text-lg">
+                    <ul className="text-highlight-green list-inside list-disc space-y-3 text-sm leading-relaxed md:text-lg">
                       {section.content.map((item, itemIndex) => (
                         <li key={itemIndex}>{item}</li>
                       ))}

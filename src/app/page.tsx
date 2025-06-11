@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <FadeInView>
-        <div className="flex w-full items-center justify-center gap-4 px-4 py-12">
+        <div className="flex w-full items-center justify-center gap-4 px-12 py-12 md:px-4">
           <Image
             src="/icon.png"
             alt="Icon"
