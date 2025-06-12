@@ -6,4 +6,7 @@ publish = ".next"
 NODE_VERSION = "18"
 
 [site]
-bucket = ".next" 
+bucket = ".next"
+
+[pages]
+pages_build_output_dir = ".next" 
