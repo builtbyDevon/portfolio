@@ -38,7 +38,7 @@ export const BlurDecorationExample = () => {
 
         {/* Example 4: Custom size with centered */}
         <div className="relative h-64 overflow-hidden rounded-lg border border-neutral-700 bg-neutral-900 p-6">
-          <BlurDecoration width="50%" height="200px" color="purple" />
+          <BlurDecoration className="h-[200px] w-1/2" color="purple" />
           <div className="relative z-10">
             <h3 className="mb-2 text-xl">Centered with Custom Size</h3>
             <p>50% width, 200px height, purple color, centered</p>
