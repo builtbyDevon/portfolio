@@ -1,14 +1,11 @@
 import { FadeInView } from "@/components/FadeInView";
 import { GradientText } from "@/components/GradientText";
 import Image from "next/image";
-import { Rive } from "@/components/Rive";
 import BlurDecoration from "@/components/BlurDecoration";
 import { InteractiveCircles } from "@/components/InteractiveCircles";
 import Header, { Highlight } from "@/components/Header";
 import CoreStats from "@/components/CoreStats";
 import Projects, { exampleProjects } from "@/components/Projects";
-import { Link } from "lucide-react";
-import { FooterConsoleLog } from "@/components/FooterConsoleLog";
 import Footer from "@/components/Footer";
 
 export default function Portfolio() {

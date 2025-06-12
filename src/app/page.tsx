@@ -2,10 +2,16 @@ import Image from "next/image";
 import { FadeInView } from "@/components/FadeInView";
 import { GradientText } from "@/components/GradientText";
 import Sparkles from "@/components/Sparkles";
-import { TerminalAnimation } from "@/components/TerminalAnimation";
-import { Rive } from "@/components/Rive";
+import dynamic from "next/dynamic";
+
+const TerminalAnimation = dynamic(
+  () =>
+    import("@/components/TerminalAnimation").then(
+      (mod) => mod.TerminalAnimation
+    ),
+  { ssr: false } // Server-side rendering is false because it's a client-side animation
+);
 import BlurDecoration from "@/components/BlurDecoration";
-import Projects, { exampleProjects } from "@/components/Projects";
 
 export default function Home() {
   return (
