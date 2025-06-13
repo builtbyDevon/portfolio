@@ -43,14 +43,14 @@ export const metadata: Metadata = {
       {
         rel: "mask-icon",
         url: "/safari-pinned-tab.svg",
-        color: "#000000",
+        color: "#0d0d0d",
       },
     ],
   },
   manifest: "/site.webmanifest",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: "Devon Welch - Portfolio",
   },
   viewport: {
@@ -58,7 +58,8 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 1,
   },
-  themeColor: "#000000",
+  themeColor: "#0d0d0d",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
