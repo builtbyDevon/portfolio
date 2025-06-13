@@ -6,6 +6,7 @@ import BlurDecoration from "@/components/BlurDecoration";
 import { InteractiveCircles } from "@/components/InteractiveCircles";
 import { FooterConsoleLog } from "@/components/FooterConsoleLog";
 import Header, { Highlight } from "@/components/Header";
+import { ClipboardTooltip } from "./ClipboardTooltip";
 
 const Footer: React.FC = () => {
   return (
@@ -34,14 +35,16 @@ const Footer: React.FC = () => {
       </FadeInView>
 
       <FadeInView>
-        <p className="py-8 text-center text-xl font-semibold md:text-3xl">
+        <div className="py-8 text-center text-xl font-semibold md:text-3xl">
           <GradientText>Shoot me an </GradientText>
-          <GradientText
-            href="mailto:devonwelchcodes@gmail.com"
-            highlight="var(--highlight-blue)"
+
+          <ClipboardTooltip
+            tooltipText="devonwelchcodes@gmail.com"
+            copyText="devonwelchcodes@gmail.com"
           >
-            email
-          </GradientText>
+            <GradientText highlight="var(--highlight-blue)">Email</GradientText>
+          </ClipboardTooltip>
+
           <GradientText>, or find me on </GradientText>
           <GradientText
             highlight="var(--highlight-green)"
@@ -49,7 +52,7 @@ const Footer: React.FC = () => {
           >
             LinkedIn
           </GradientText>
-        </p>
+        </div>
       </FadeInView>
 
       <FadeInView>
@@ -59,13 +62,13 @@ const Footer: React.FC = () => {
           width={248}
           quality={100}
           height={190}
-          className="mx-auto -mb-10 w-[150px] pt-2 md:w-auto md:pt-16"
+          className="mx-auto -mb-10 w-[150px] pt-2 md:w-[248px] md:pt-16"
           style={{ height: "auto" }}
         />
       </FadeInView>
 
       <FadeInView delay={0.7}>
-        <p className="md:text-md py-12 pb-6 text-center text-sm text-neutral-50/30 md:pb-12">
+        <p className="py-12 pb-6 text-center text-sm text-neutral-50/30 md:pb-12 md:text-base">
           console.log("You found the end!");
         </p>
       </FadeInView>

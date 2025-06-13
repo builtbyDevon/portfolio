@@ -38,19 +38,22 @@ export const GradientText = ({
   } else {
     const gradientStyle = highlight
       ? {
-          background: `radial-gradient(circle, ${highlight} 0%, white 100%)`,
+          color: highlight,
+        }
+      : {
+          background: `radial-gradient(circle, white 0%, #b5b5b5 100%)`,
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
           color: "transparent",
-        }
-      : undefined;
+        };
 
     return (
-      <span
-        className={`bg-[radial-gradient(circle,_white_0%,_#b5b5b5_100%)] bg-clip-text text-transparent ${className}`}
-        style={gradientStyle}
-      >
-        {children}
+      <span className={className} style={gradientStyle}>
+        {highlight ? (
+          <HeaderSparkles color={highlight}>{children}</HeaderSparkles>
+        ) : (
+          children
+        )}
       </span>
     );
   }
