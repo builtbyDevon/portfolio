@@ -35,14 +35,14 @@ const Footer: React.FC = () => {
       </FadeInView>
 
       <FadeInView>
-        <div className="py-8 text-center text-xl font-semibold md:text-3xl">
+        <div className="py-8 text-center text-xl font-semibold text-[var(--highlight-blue)] md:text-3xl">
           <GradientText>Shoot me an </GradientText>
 
           <ClipboardTooltip
             tooltipText="devonwelchcodes@gmail.com"
             copyText="devonwelchcodes@gmail.com"
           >
-            <GradientText highlight="var(--highlight-blue)">Email</GradientText>
+            Email
           </ClipboardTooltip>
 
           <GradientText>, or find me on </GradientText>
