@@ -141,7 +141,7 @@ export const TerminalAnimation = () => {
   useEffect(() => {
     if (isComplete && lines.includes(SUCCESS_MESSAGE)) {
       const redirectTimer = setTimeout(() => {
-        // router.push("/portfolio");
+        router.push("/portfolio");
       }, 500); // Wait 2 seconds before redirecting
 
       return () => clearTimeout(redirectTimer);
