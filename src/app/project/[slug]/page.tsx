@@ -151,7 +151,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </FadeInView>
 
         {/* Content Sections (Goals, Tools Used, etc.) */}
-        <FadeInView delay={0.5}>
+        <FadeInView delay={0}>
           <section className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2">
             {project.sections.map((section, index) => (
               <div key={index} className="gap-4">

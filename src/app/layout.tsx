@@ -31,6 +31,34 @@ const kronaOne = Krona_One({
 export const metadata: Metadata = {
   title: "Devon Welch - Portfolio",
   description: "Portfolio website showcasing my work and skills",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/apple-icon.png", type: "image/png", sizes: "180x180" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#000000",
+      },
+    ],
+  },
+  manifest: "/site.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Devon Welch - Portfolio",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
