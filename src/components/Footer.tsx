@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
           <GradientText>Shoot me an </GradientText>
 
           <ClipboardTooltip
-            tooltipText="devonwelchcodes@gmail.com"
-            copyText="devonwelchcodes@gmail.com"
+            tooltipText="devon@devonw.me"
+            copyText="devon@devonw.me"
           >
             Email
           </ClipboardTooltip>
