@@ -90,7 +90,7 @@ const exampleProjects: Project[] = [
     logoSrc: "/project-logos/apex.svg", // Using placeholder logo
     webUrl: "https://apexgranite.com",
     techTags: [
-      { name: "WordPress", icon: "/icons/wordpress.svg" },
+      { name: "Concrete", icon: "/icons/concrete.svg" },
       { name: "HTML", icon: "/icons/html.svg" },
       { name: "SASS", icon: "/icons/sass.svg" },
     ],
