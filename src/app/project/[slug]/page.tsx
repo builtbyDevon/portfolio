@@ -85,7 +85,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="mb-12">
           <FadeInView>
             <Link
-              href="/portfolio"
+              href="/"
               className="text-highlight-green group inline-flex items-center transition-colors hover:text-white"
             >
               <svg
@@ -220,7 +220,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <p>
             Back to
             <Link
-              href="/portfolio"
+              href="/"
               className="text-highlight-green ml-3 underline hover:text-white"
             >
               ← Portfolio

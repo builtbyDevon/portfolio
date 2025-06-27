@@ -1,21 +1,33 @@
-import Image from "next/image";
 import { FadeInView } from "@/components/FadeInView";
 import { GradientText } from "@/components/GradientText";
-import Sparkles from "@/components/Sparkles";
-import dynamic from "next/dynamic";
-
-const TerminalAnimation = dynamic(
-  () =>
-    import("@/components/TerminalAnimation").then(
-      (mod) => mod.TerminalAnimation
-    ),
-  { ssr: false } // Server-side rendering is false because it's a client-side animation
-);
+import Image from "next/image";
 import BlurDecoration from "@/components/BlurDecoration";
+import { InteractiveCircles } from "@/components/InteractiveCircles";
+import Header, { Highlight } from "@/components/Header";
+import CoreStats from "@/components/CoreStats";
+import Projects, { exampleProjects } from "@/components/Projects";
+import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function Portfolio() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="relative w-full overflow-hidden">
+      <InteractiveCircles
+        size="600px"
+        mobileBreakpoint={768}
+        mobileSize="200px"
+        mobilePosition={{ top: "0", left: "-15%" }}
+        position={{ top: "0", left: "15%" }}
+      />
+
+      <InteractiveCircles
+        color="var(--highlight-blue)"
+        position={{ top: "-100px", right: "0" }}
+        size="400px"
+        sensitivity={3}
+        mobileBreakpoint={768}
+        mobileSize="180px"
+      />
+
       <FadeInView>
         <div className="flex w-full items-center justify-center gap-4 px-12 py-12 md:px-4">
           <Image
@@ -33,66 +45,101 @@ export default function Home() {
             width={337}
             height={337}
             style={{ height: "auto" }}
-            className="w-auto min-w-[50px] max-w-[337px]" // Sets minimum width and maintains aspect ratio
-          />
-        </div>
-      </FadeInView>
-      <FadeInView delay={0.3}>
-        <h1 className="mx-auto mb-2 block text-center text-3xl font-semibold leading-normal md:text-5xl md:leading-normal">
-          <GradientText>Hey! You're looking for Devon's</GradientText>{" "}
-          <span className="text-[var(--highlight-green)]">Portfolio </span>
-          <GradientText highlight="#b5b5b5">right?</GradientText>
-        </h1>
-      </FadeInView>
-      <FadeInView delay={0.5}>
-        <h3 className="text-center text-xl font-semibold md:text-3xl">
-          <GradientText highlight="#d4d4d4">
-            Awesome — we just need to{" "}
-          </GradientText>
-          <span className="relative mr-2 text-[var(--highlight-green)]">
-            simulate
-            <div
-              className="animate-underline absolute bottom-0 left-0 h-[2px] w-full rounded-2xl bg-[var(--highlight-green)]"
-              style={{ transform: "scaleX(0)" }}
-            ></div>
-          </span>
-          <GradientText>
-            installing some{" "}
-            <Image
-              src="/sunglass-emoji.png"
-              alt="Sunglasses Emoji"
-              width={29}
-              height={29}
-              className="animate-wiggle inline-block align-text-bottom"
-            />{" "}
-          </GradientText>
-          <span
-            className="text-[var(--highlight-blue)]"
-            suppressHydrationWarning
-          >
-            <Sparkles color="#FFD700">cool stuff</Sparkles>
-          </span>{" "}
-          <GradientText>first...</GradientText>
-        </h3>
-      </FadeInView>
-      <FadeInView delay={0.7}>
-        <div className="relative mx-auto max-w-2xl">
-          <div className="p-3">
-            <TerminalAnimation />
-          </div>
-          {/* <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-full bg-[var(--highlight-blue)] opacity-20 blur-[150px]" /> */}
-          <Image
-            src="/guy-coding.png"
-            alt="Icon"
-            width={155}
-            height={139}
-            quality={100}
-            className="absolute -bottom-4 -right-[50.5px]"
+            className="w-auto min-w-[50px] max-w-[337px]"
           />
         </div>
       </FadeInView>
 
-      <BlurDecoration className="absolute left-1/2 top-0 -z-10 h-[40vw] min-h-[700px] w-[40vw] min-w-[700px] -translate-x-1/2" />
+      <FadeInView delay={0.5}>
+        <h1 className="relative mx-auto max-w-[1300px] px-[15px] text-center text-4xl font-semibold md:text-[63px]">
+          <GradientText>
+            <Image
+              alt="Web Developer"
+              width={42.75}
+              height={42.75}
+              src="/code.svg"
+              className="align-text-center inline-block"
+            />{" "}
+            Web Developer,{" "}
+            <Image
+              alt="Web Developer"
+              width={42.75}
+              height={42.75}
+              src="/design.svg"
+              className="align-text-center inline-block"
+            />{" "}
+            Designer,{" "}
+            <Image
+              alt="Web Developer"
+              width={42.75}
+              height={42.75}
+              src="/tech.svg"
+              className="align-text-center inline-block"
+            />{" "}
+            Tech &{" "}
+            <Image
+              alt="Web Developer"
+              width={42.75}
+              height={42.75}
+              src="/ai.svg"
+              className="align-text-center inline-block"
+            />{" "}
+            AI Enthusiast,{" "}
+            <Image
+              alt="Web Developer"
+              width={46.75}
+              height={46.75}
+              src="/gamer.svg"
+              className="align-text-center inline-block"
+            />{" "}
+            Gamer and{" "}
+            <Image
+              alt="Web Developer"
+              width={42.75}
+              height={42.75}
+              src="/dogo.svg"
+              className="align-text-center inline-block"
+            />{" "}
+            Dogo Lover
+          </GradientText>
+        </h1>
+      </FadeInView>
+
+      <div className="mx-auto max-w-[1300px] px-[15px] py-12">
+        <FadeInView className="backdrop-blur-lg" delay={0.8}>
+          <div className="mx-auto max-w-[1300px] space-y-8 pb-12">
+            <Header
+              size="lg"
+              mobileSize="sm"
+              className="margin-0 relative z-50 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
+            >
+              My core <Highlight>stats</Highlight>
+            </Header>
+
+            <CoreStats className="relative z-10" />
+          </div>
+        </FadeInView>
+      </div>
+
+      <div id="projects-section">
+        <Projects projects={exampleProjects} />
+      </div>
+
+      <Footer />
+
+      <BlurDecoration
+        className="left-1/6 md:-top-1/6 top-0 h-[200vw] w-[200vw] -translate-x-1/2 md:h-[90vw] md:w-[90vw]"
+        color="var(--highlight-blue)"
+        opacity={0.1}
+        centered={true}
+      />
+
+      <BlurDecoration
+        className="bottom-1/2 right-[-450px] h-[900px] w-[900px] md:bottom-0 md:right-[-30vw] md:h-[60vw] md:w-[60vw]"
+        color="var(--highlight-green)"
+        opacity={0.1}
+        centered={true}
+      />
     </main>
   );
 }
