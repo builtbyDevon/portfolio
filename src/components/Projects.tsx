@@ -45,13 +45,13 @@ const Projects = ({ projects }: ProjectsProps) => {
             mobileSize="sm"
             className="relative z-10 mb-1 text-center uppercase text-white md:text-left"
           >
-            My <Highlight>projects</Highlight>
+            Highlighted <Highlight>projects</Highlight>
           </Header>
         </FadeInView>
       </div>
 
       {/* Projects Grid */}
-      <FadeInView delay={1.2}>
+      <FadeInView>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
           {projects.map((project) => {
             return (

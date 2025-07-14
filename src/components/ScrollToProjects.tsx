@@ -1,24 +1,26 @@
 "use client";
+import { Book } from "lucide-react";
 
-import { useEffect } from "react";
-
-export function ScrollToProjects() {
-  useEffect(() => {
-    // Check if we just navigated back from a project page
-    const fromProject = sessionStorage.getItem("fromProject");
-    if (fromProject) {
-      // Clear the flag
-      sessionStorage.removeItem("fromProject");
-
-      // Scroll to projects section with a slight delay to ensure page is loaded
-      setTimeout(() => {
-        const projectsSection = document.getElementById("projects-section");
-        if (projectsSection) {
-          projectsSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 2000);
+export default function ScrollToProjects() {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById("projects-section");
+    if (element) {
+      const offset = 20;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
-  }, []);
+  };
 
-  return null;
+  return (
+    <a
+      href="#projects-section"
+      onClick={handleClick}
+      className="bg-highlight-green inline-flex items-center gap-2 rounded-lg px-8 py-3 text-lg font-semibold text-neutral-900 transition-all hover:scale-105 hover:bg-opacity-80"
+    >
+      <Book size={20} strokeWidth={2} />
+      See my projects
+    </a>
+  );
 }
