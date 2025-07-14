@@ -47,38 +47,6 @@ my-app/
 └── tailwind.config.ts      # Tailwind magic
 ```
 
-## 🎨 Making It Yours
-
-### Add Your Projects
-
-Pop into `src/lib/projectData.tsx` and add your own projects. Each one needs:
-
-- A cool title and description
-- What tech you used
-- Some nice screenshots
-- Links to live demo and code
-
-### Styling
-
-- Tweak `tailwind.config.ts` for your color scheme
-- Mess with `src/app/globals.css` for global styles
-- Customize components in `src/components/`
-
-### Content
-
-- Update your info in the components
-- Swap out project images in `public/project-images/`
-- Add your own icons and logos
-
-## 🚀 Deploy It
-
-This bad boy is ready for Vercel:
-
-1. Push to GitHub
-2. Connect to Vercel
-3. Deploy with one click
-4. Profit! 🎉
-
 ## 📱 The Cool Features
 
 ### Interactive Stuff
