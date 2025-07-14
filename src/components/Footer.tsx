@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
           </GradientText>
         </div>
       </FadeInView>
-
+      {/* 
       <FadeInView>
         <Image
           src="/footer-guy.png"
@@ -65,10 +65,10 @@ const Footer: React.FC = () => {
           className="mx-auto -mb-10 w-[150px] pt-2 md:w-[248px] md:pt-16"
           style={{ height: "auto" }}
         />
-      </FadeInView>
+      </FadeInView> */}
 
       <FadeInView delay={0.7}>
-        <p className="py-12 pb-6 text-center text-sm text-neutral-50/30 md:pb-12 md:text-base">
+        <p className="pt-35 py-12 pb-6 text-center text-sm text-neutral-50/30 md:pb-12 md:text-base">
           console.log("You found the end!");
         </p>
       </FadeInView>
