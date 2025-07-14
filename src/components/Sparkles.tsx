@@ -192,34 +192,21 @@ const Sparkles = ({
 
   useEffect(() => {
     setIsMounted(true);
+    console.log("Sparkles component mounted"); // Debug: Confirm mounting
   }, []);
 
   useEffect(() => {
-    if (!wrapperRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.01 }
-    );
-    observer.observe(wrapperRef.current);
-    return () => {
-      if (wrapperRef.current) {
-        observer.unobserve(wrapperRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isMounted && isInView && sparkles.length === 0) {
+    if (isMounted && sparkles.length === 0) {
+      console.log("Generating initial sparkles"); // Debug: Initial generation
       setSparkles(range(3).map(() => generateSparkle(color)));
     }
-  }, [isMounted, isInView, color, sparkles.length]);
+  }, [isMounted, color, sparkles.length]);
 
   useRandomInterval(
     () => {
-      if (!isMounted || !isInView) return;
+      if (!isMounted) return;
 
+      console.log("Generating new sparkle"); // Debug: New sparkle creation
       const sparkle = generateSparkle(color);
       const now = Date.now();
       const nextSparkles = sparkles.filter((sp) => {
@@ -229,14 +216,21 @@ const Sparkles = ({
       nextSparkles.push(sparkle);
       setSparkles(nextSparkles);
     },
-    prefersReducedMotion || !isMounted || !isInView ? null : 50,
-    prefersReducedMotion || !isMounted || !isInView ? null : 450
+    prefersReducedMotion || !isMounted ? null : 50,
+    prefersReducedMotion || !isMounted ? null : 450
   );
+
+  console.log(
+    "Rendering with",
+    sparkles.length,
+    "sparkles",
+    "Reduced motion:",
+    prefersReducedMotion
+  ); // Debug: Render count and motion preference
 
   return (
     <Wrapper ref={wrapperRef} {...delegated}>
       {isMounted &&
-        isInView &&
         sparkles.map((sparkle) => (
           <SparkleInstance
             key={sparkle.id}

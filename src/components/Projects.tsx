@@ -75,6 +75,18 @@ const Projects = ({ projects }: ProjectsProps) => {
 const exampleProjects: Project[] = [
   {
     id: 1,
+    title: "Pokedex",
+    logoSrc: "/project-logos/pokedex.svg", // Using placeholder logo
+    // webUrl: "https://www.bellalliance.ca/",
+    techTags: [
+      { name: "NextJS", icon: "/icons/next.svg" },
+      { name: "Tailwind", icon: "/icons/tailwind.svg" },
+      { name: "Typescript", icon: "/icons/typescript.svg" },
+    ],
+    slug: "pokedex",
+  },
+  {
+    id: 2,
     title: "Bell Alliance",
     logoSrc: "/project-logos/bell-alliance.svg", // Using placeholder logo
     webUrl: "https://www.bellalliance.ca/",
@@ -85,7 +97,7 @@ const exampleProjects: Project[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "APEX Granite",
     logoSrc: "/project-logos/apex.svg", // Using placeholder logo
     webUrl: "https://apexgranite.com",
@@ -96,7 +108,7 @@ const exampleProjects: Project[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Jags",
     logoSrc: "/project-logos/jags.svg", // Using placeholder logo
     webUrl: "https://stayatjags.com/",
@@ -116,14 +128,6 @@ const exampleProjects: Project[] = [
       { name: "HTML", icon: "/icons/html.svg" },
       { name: "SASS", icon: "/icons/sass.svg" },
     ],
-  },
-  {
-    id: 6,
-    title: "PokeDex",
-    logoSrc: "/project-logos/pokedex.svg", // Using placeholder logo
-    // webUrl: "https://www.bellalliance.ca/",
-    techTags: [{ name: "Figma", icon: "/icons/figma.svg" }],
-    slug: "pokedex",
   },
 ];
 

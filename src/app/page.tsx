@@ -51,7 +51,7 @@ export default function Portfolio() {
       </FadeInView>
 
       <FadeInView delay={0.5}>
-        <h1 className="relative mx-auto max-w-[1300px] px-[15px] text-center text-4xl font-semibold md:text-[63px]">
+        <h1 className="relative mx-auto max-w-[1300px] px-[15px] py-8 text-center text-4xl font-semibold md:text-[45px]">
           <GradientText>
             <Image
               alt="Web Developer"
@@ -84,23 +84,23 @@ export default function Portfolio() {
               src="/ai.svg"
               className="align-text-center inline-block"
             />{" "}
-            AI Enthusiast,{" "}
-            <Image
+            AI Enthusiast
+            {/* <Image
               alt="Web Developer"
               width={46.75}
               height={46.75}
               src="/gamer.svg"
               className="align-text-center inline-block"
             />{" "}
-            Gamer and{" "}
-            <Image
+            Gamer */}
+            {/* <Image
               alt="Web Developer"
               width={42.75}
               height={42.75}
               src="/dogo.svg"
               className="align-text-center inline-block"
             />{" "}
-            Dogo Lover
+            Dogo Lover */}
           </GradientText>
         </h1>
       </FadeInView>

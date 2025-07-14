@@ -25,115 +25,69 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "pokedex",
-    title: "PokeDex",
-    subtitleBig: "3D-inspired Pokémon UI built in Figma.",
+    title: "Pokedex",
+    subtitleBig:
+      "A lightning-fast, interactive Pokedex built with Next.js, TypeScript, and cutting-edge web technologies.",
     subtitleSmall:
-      "A modern, playful UI exploration of a classic – the Pokémon PokeDex.",
-    extraDetails: ["UI Design", "Figma", "Concept"],
-    detailTags: [{ name: "Figma", icon: "/icons/figma.svg" }],
-    content: (
-      <div className="space-y-8">
-        <Header
-          size="lg"
-          mobileSize="sm"
-          className="relative z-10 mb-1 text-center uppercase text-white"
-        >
-          HOME <Highlight>DARK MODE</Highlight>
-        </Header>
-
-        <Image
-          src="/project-images/pokedex/pokedex-1.png"
-          alt="PokeDex"
-          width={1000}
-          height={1000}
-          quality={100}
-          className="h-auto w-full"
-        />
-
-        <Header
-          size="lg"
-          mobileSize="sm"
-          className="relative z-10 mb-1 text-center uppercase text-white"
-        >
-          HOME <Highlight>LIGHT MODE</Highlight>
-        </Header>
-
-        <Image
-          src="/project-images/pokedex/pokedex-2.png"
-          alt="PokeDex"
-          width={1000}
-          height={1000}
-          quality={100}
-          className="h-auto w-full"
-        />
-
-        <Header
-          size="lg"
-          mobileSize="sm"
-          className="relative z-10 mb-1 text-center uppercase text-white"
-        >
-          MORE <Highlight>LIGHT MODE</Highlight>
-        </Header>
-
-        <div className="flex flex-wrap items-center justify-center gap-4 md:justify-between">
-          <Image
-            src="/project-images/pokedex/pokedex-3.png"
-            alt="PokeDex"
-            width={288}
-            height={695}
-            quality={100}
-            className="h-auto w-full max-w-[288px]"
-          />
-
-          <Image
-            src="/project-images/pokedex/pokedex-4.png"
-            alt="PokeDex"
-            width={695}
-            height={697}
-            quality={100}
-            className="h-auto w-full max-w-[695px]"
-          />
-        </div>
-      </div>
-    ),
+      "From my Figma concept to fully functional app - complete with particle effects, sound design, and server-side rendering.",
+    extraDetails: [
+      "Next.js 14",
+      "TypeScript",
+      "Tailwind CSS",
+      "PokeAPI",
+      "tsParticles",
+      "Howler.js",
+    ],
+    detailTags: [
+      { name: "NextJS", icon: "/icons/next.svg" },
+      { name: "TypeScript", icon: "/icons/typescript.svg" },
+      { name: "Tailwind", icon: "/icons/tailwind.svg" },
+    ],
+    content: <div className="space-y-8"></div>,
     sections: [
       {
         title: "Goals",
         icon: "/project-icons/target.png",
         content: [
-          "Build a responsive layout suitable for both desktop and mobile.",
-          "Explore dark/light mode switching.",
-          "Implement a 3D view toggle (concept).",
-          "Design filters and search in a fun, intuitive way.",
+          "Transform a Figma design into a fully functional, production-ready web application.",
+          "Implement smooth animations and particle effects for an immersive experience.",
+          "Create a responsive, accessible interface that works flawlessly on all devices.",
+          "Build with modern web technologies for optimal performance and developer experience.",
         ],
       },
       {
-        title: "Tools Used",
+        title: "Tech Stack",
         icon: "/project-icons/wrench.png",
         content: [
-          "Figma (Design & Prototyping)",
-          "Imagination & Pokémon Nostalgia",
+          "Next.js 14 with App Router for blazing-fast server-side rendering",
+          "TypeScript for type safety and better development experience",
+          "Tailwind CSS for rapid, responsive UI development",
+          "tsParticles for stunning particle animations and effects",
+          "Howler.js for immersive sound design and audio feedback",
+          "PokeAPI for comprehensive Pokémon data and statistics",
         ],
       },
       {
-        title: "UX & Design Decisions",
+        title: "Key Features",
         icon: "/project-icons/brain.png",
         content: [
-          "Card Design: Pokémon types are color-coded for quick visual filtering.",
-          "Interaction Design: Used playful micro-interactions (e.g., toggle switch, hover states).",
-          "Typography: Kept headers playful yet readable using retro fonts.",
-          "Accessibility: Basic contrast checks performed; keyboard-friendly layout planned for any development stage.",
+          "Interactive particle effects that respond to user interactions",
+          "Sound design with Howler.js for authentic Pokémon experience",
+          "Server-side rendering for optimal SEO and performance",
+          "Responsive design that looks great on desktop, tablet, and mobile",
+          "Type-safe API integration with comprehensive error handling",
+          "Smooth animations and micro-interactions throughout the interface",
         ],
       },
       {
-        title: "Results / What I Learned",
+        title: "Results & Learnings",
         icon: "/project-icons/graph.png",
         content:
-          "This project was a deep dive into UI presentation for a beloved franchise, focusing on creating an engaging and visually rich experience. It reinforced the importance of thematic consistency and how small interactive elements can significantly enhance user engagement. I also experimented with creating a pseudo-3D feel within a 2D design tool.",
+          "This project successfully bridged the gap between design and development, taking my Figma concept from wireframes to a fully functional application. I deepened my understanding of Next.js 14's App Router, mastered TypeScript integration, and learned how to create engaging user experiences with particles and sound. The combination of server-side rendering with client-side interactivity resulted in a fast, SEO-friendly application that maintains the playful spirit of the original Pokémon franchise.",
       },
     ],
-    // liveLink: "https://example.com/pokedex-live", // Optional
-    // repoLink: "https://github.com/yourusername/pokedex-figma-concept", // Optional
+    liveLink: "https://pokemon-dex-gilt.vercel.app/", // Update this with your actual live URL
+    repoLink: "https://github.com/builtbyDevon/pokedex", // Optional
   },
   // You can add more project objects here following the same structure
 ];

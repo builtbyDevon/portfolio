@@ -48,19 +48,17 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Devon Welch - Portfolio",
-  },
-  viewport: {
+};
+
+export function generateViewport() {
+  return {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
-  },
-  themeColor: "#0d0d0d",
-  colorScheme: "dark",
-};
+    themeColor: "#0d0d0d",
+    colorScheme: "dark",
+  };
+}
 
 export default function RootLayout({
   children,
