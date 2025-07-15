@@ -9,6 +9,7 @@ import Projects, { exampleProjects } from "@/components/Projects";
 import Footer from "@/components/Footer";
 import ScrollToProjects from "@/components/ScrollToProjects";
 import { Download } from "lucide-react";
+import TestimonialsSlider from "@/components/TestimonialsSlider";
 
 export default function Portfolio() {
   return (
@@ -201,6 +202,19 @@ export default function Portfolio() {
 
       <div id="projects-section">
         <Projects projects={exampleProjects} />
+      </div>
+
+      <div className="mt-18 mx-auto max-w-[1300px]">
+        <Header
+          size="lg"
+          mobileSize="sm"
+          className="margin-0 relative z-50 mb-1 text-center uppercase text-white md:-mb-8 md:pl-0 md:text-left"
+        >
+          <Highlight>Testimonials</Highlight>
+        </Header>
+      </div>
+      <div className="px-[15px]">
+        <TestimonialsSlider />
       </div>
 
       <Footer />
