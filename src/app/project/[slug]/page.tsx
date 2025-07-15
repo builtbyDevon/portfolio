@@ -161,9 +161,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <p className="text-[20px] text-neutral-300 md:text-[30px]">
               {project.subtitleBig}
             </p>
-            <p className="text-base text-neutral-400 md:text-xl">
+            {/* <p className="text-base text-neutral-400 md:text-xl">
               {project.subtitleSmall}
-            </p>
+            </p> */}
             {project.extraDetails && project.extraDetails.length > 0 && (
               <p className="mt-8 text-[12px] uppercase tracking-widest text-[var(--highlight-blue)]">
                 {project.extraDetails.join(" • ")}
@@ -240,7 +240,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-highlight-green mx-2 inline-block rounded-lg px-8 py-3 text-lg font-semibold text-neutral-900 transition-all hover:bg-opacity-80"
+                  className="bg-highlight-green mx-2 inline-block rounded-lg px-8 py-3 text-lg font-semibold text-neutral-900 transition-all hover:scale-105 hover:bg-opacity-80"
                 >
                   View Live Site
                 </a>
@@ -250,7 +250,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={project.repoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mx-2 inline-block rounded-lg bg-neutral-700 px-8 py-3 text-lg font-semibold text-white transition-all hover:bg-neutral-600"
+                  className="hover:border-highlight-green hover:text-highlight-green mx-2 inline-block rounded-lg border-2 border-neutral-600 bg-transparent px-8 py-3 text-lg font-semibold text-neutral-200 transition-all hover:scale-105"
                 >
                   View Code
                 </a>

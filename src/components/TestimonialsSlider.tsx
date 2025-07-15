@@ -43,14 +43,6 @@ export default function TestimonialsSlider() {
     }
   }, [index]);
 
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      paginate(1);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [isHovered, index]);
-
   return (
     <div
       className="relative mx-auto max-w-[1300px] rounded-2xl p-2 py-4 text-center shadow-lg md:my-12 md:p-8"
