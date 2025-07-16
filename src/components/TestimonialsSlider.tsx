@@ -45,7 +45,7 @@ export default function TestimonialsSlider() {
 
   return (
     <div
-      className="relative mx-auto max-w-[1300px] rounded-2xl p-2 py-4 text-center shadow-lg md:my-12 md:p-8"
+      className="relative mx-auto max-w-[1400px] rounded-2xl py-4 text-center shadow-lg md:my-12"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

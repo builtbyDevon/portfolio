@@ -45,7 +45,7 @@ const Projects = ({ projects }: ProjectsProps) => {
             mobileSize="sm"
             className="relative z-10 mb-1 text-center uppercase text-white md:text-left"
           >
-            Highlighted <Highlight>projects</Highlight>
+            Top <Highlight>projects</Highlight>
           </Header>
         </FadeInView>
       </div>

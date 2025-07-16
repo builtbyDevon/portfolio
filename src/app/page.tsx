@@ -184,7 +184,7 @@ export default function Portfolio() {
               mobileSize="sm"
               className="margin-0 relative z-50 mb-1 pl-4 text-center uppercase text-white md:left-12 md:-mb-8 md:pl-0 md:text-left"
             >
-              My core <Highlight>stats</Highlight>
+              My core <Highlight>skills</Highlight>
             </Header>
 
             <CoreStats className="relative z-10" />
@@ -196,7 +196,7 @@ export default function Portfolio() {
         <Projects projects={exampleProjects} />
       </div>
 
-      <div className="mt-18 mx-auto max-w-[1300px]">
+      <div className="mt-18 mx-auto max-w-[1300px] px-[15px]">
         <Header
           size="lg"
           mobileSize="sm"
