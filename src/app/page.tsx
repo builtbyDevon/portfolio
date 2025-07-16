@@ -99,57 +99,49 @@ export default function Portfolio() {
       </FadeInView>
 
       <FadeInView delay={0.5}>
-        <h1 className="relative mx-auto max-w-[1300px] px-[15px] py-8 text-center text-4xl font-semibold md:text-[45px]">
-          <GradientText>
-            <Image
-              alt="Web Developer"
-              width={42.75}
-              height={42.75}
-              src="/code.svg"
-              className="align-text-center inline-block"
-            />{" "}
-            Web Developer,{" "}
-            <Image
-              alt="Web Developer"
-              width={42.75}
-              height={42.75}
-              src="/design.svg"
-              className="align-text-center inline-block"
-            />{" "}
-            Designer,{" "}
-            <Image
-              alt="Web Developer"
-              width={42.75}
-              height={42.75}
-              src="/tech.svg"
-              className="align-text-center inline-block"
-            />{" "}
-            Tech &{" "}
-            <Image
-              alt="Web Developer"
-              width={42.75}
-              height={42.75}
-              src="/ai.svg"
-              className="align-text-center inline-block"
-            />{" "}
-            AI Enthusiast
-            {/* <Image
-              alt="Web Developer"
-              width={46.75}
-              height={46.75}
-              src="/gamer.svg"
-              className="align-text-center inline-block"
-            />{" "}
-            Gamer */}
-            {/* <Image
-              alt="Web Developer"
-              width={42.75}
-              height={42.75}
-              src="/dogo.svg"
-              className="align-text-center inline-block"
-            />{" "}
-            Dogo Lover */}
-          </GradientText>
+        <h1 className="relative mx-auto max-w-[1300px] px-[15px] pb-2 pt-8 text-center text-3xl font-semibold leading-relaxed sm:text-4xl md:text-[40px]">
+          <div className="flex flex-wrap items-center justify-center gap-x-5">
+            <div className="flex items-center gap-3">
+              <Image
+                alt="Web Developer"
+                width={42.75}
+                height={42.75}
+                src="/code.svg"
+                className="align-text-center inline-block"
+              />{" "}
+              <GradientText>Web Developer </GradientText>
+            </div>
+            <div className="flex items-center gap-3">
+              <Image
+                alt="Web Developer"
+                width={42.75}
+                height={42.75}
+                src="/design.svg"
+                className="align-text-center inline-block"
+              />{" "}
+              <GradientText>Designer </GradientText>
+            </div>
+            <div className="flex items-center gap-3">
+              <Image
+                alt="Web Developer"
+                width={42.75}
+                height={42.75}
+                src="/tech.svg"
+                className="align-text-center inline-block"
+              />{" "}
+              <GradientText>UX-Obsessed </GradientText>
+            </div>
+            <div className="flex items-center gap-3">
+              <Image
+                alt="Web Developer"
+                width={42.75}
+                height={42.75}
+                src="/ai.svg"
+                className="align-text-center inline-block"
+              />{" "}
+              <GradientText> AI Explorer</GradientText>
+            </div>
+          </div>
         </h1>
       </FadeInView>
 
@@ -158,8 +150,8 @@ export default function Portfolio() {
         <div className="mx-auto max-w-[800px] px-[15px] py-4 text-center">
           <p className="text-lg md:text-xl">
             <GradientText>
-              Canadian dev with 5+ years building sleek, accessible web
-              experiences. I fuse design vision with engineering craft.
+              Canadian web developer with 5+ years building sleek, accessible
+              web experiences. I fuse design vision with engineering craft.
             </GradientText>
           </p>
         </div>

@@ -42,7 +42,7 @@ const skillCategories: SkillCategoryData[] = [
     ],
   },
   {
-    title: "AI Skills",
+    title: "AI Tools",
     progress: 85,
     color: "rgb(182 137 255)",
     skills: ["ChatGPT", "Claude AI", "Google Gemini", "Cursor AI IDE"],
