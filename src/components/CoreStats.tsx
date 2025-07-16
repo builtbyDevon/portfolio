@@ -18,6 +18,7 @@ const skillCategories: SkillCategoryData[] = [
       "CSS & SCSS",
       "Tailwind",
       "JavaScript",
+      "TypeScript",
       "React & NextJS",
       "PHP",
       "Git",
